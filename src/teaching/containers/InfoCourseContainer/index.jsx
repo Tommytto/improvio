@@ -4,8 +4,9 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {Button, Form, FormGroup, Input, Label} from "reactstrap";
-import {createCourse} from "../../actions/teaching.es";
+import {createCourse, updateCourse} from "../../actions/teaching.es";
 import {selectorProfileId} from "../../../profile/selectors/profile.es";
+import {selectorCourse} from "../../../course/selectors/course.es";
 
 // import {exampleSimple, exampleGet, exampleCreate, exampleUpdate, exampleDelete} from 'src/redux/actions/example';
 
@@ -15,10 +16,12 @@ import {selectorProfileId} from "../../../profile/selectors/profile.es";
  * @param state
  * @return {{prop}}
  */
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
+    const courseId = props.match.params.courseId;
+    console.log(selectorCourse(state, courseId));
     return {
         profileId: selectorProfileId(state),
-        // courseInfo:
+        courseInfo: selectorCourse(state, courseId),
     };
 }
 
@@ -30,13 +33,14 @@ function mapStateToProps(state) {
  */
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        createCourse,
+        updateCourse,
     }, dispatch);
 }
 
 class InfoCourse extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             name: '',
             poster: '',
@@ -69,10 +73,8 @@ class InfoCourse extends React.Component {
 
     onSubmit = (event, data) => {
         event.preventDefault();
-        const {profileId, createCourse} = this.props;
-        if (profileId) {
-            createCourse(data, profileId);
-        }
+        const {profileId, updateCourse, match} = this.props;
+        updateCourse(data, match.params.courseId);
     };
 
     render() {

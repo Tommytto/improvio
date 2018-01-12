@@ -1,11 +1,15 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
-
+import {Button, Jumbotron} from "reactstrap";
+import bemCn from 'bem-cn';
 // import {exampleSimple, exampleGet, exampleCreate, exampleUpdate, exampleDelete} from 'src/redux/actions/example';
-
+import './style.less';
+import {selectorProfileData} from "../../../profile/selectors/profile.es";
+import {HelloTeacher} from "../../components/HelloTeacher";
+import CoursePreviewList from "../../../profile/components/CoursePreviewList";
 /**
  * Привязка props к store
  *
@@ -14,7 +18,8 @@ import {bindActionCreators} from 'redux';
  */
 function mapStateToProps (state) {
     return {
-        // example: state.example,
+        courseList: selectorProfileData(state).courses,
+        profile: selectorProfileData(state),
     };
 }
 
@@ -35,12 +40,28 @@ function mapDispatchToProps (dispatch) {
 }
 
 class Teacher extends React.Component {
+    constructor() {
+        super();
+
+        this.initBem();
+    }
+
+    initBem() {
+        this.block = bemCn('teaching');
+    }
 
     /**
      * Отображение компонента
      */
     render () {
-        return null;
+        const {courseList, profile} = this.props;
+        return (
+            <div className={this.block()}>
+                {
+                    courseList && courseList.length ? <CoursePreviewList profile={profile} courseList={courseList}/> : <HelloTeacher/>
+                }
+            </div>
+        )
     }
 
 }

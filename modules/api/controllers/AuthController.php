@@ -2,6 +2,7 @@
 
 namespace app\modules\api\controllers;
 
+use app\modules\api\models\Course;
 use app\modules\api\models\User;
 use Yii;
 use yii\rest\ActiveController;
@@ -21,9 +22,12 @@ class AuthController extends Controller
             $response = Yii::$app->response;
             $response->format = Response::FORMAT_JSON;
             $model = new User();
+            $courseModel = new Course();
             $email = $request->post()['email'];
             $password = $request->post()['password'];
             $user = $model::find()->where(['email' => $email, 'password' => $password])->one();
+            $courses = $courseModel::find()->where(['author' => $user['id']])->all();
+
             if ($user) {
                 $response->data = [
                     'email' => $user['email'],
@@ -31,6 +35,7 @@ class AuthController extends Controller
                     'lastName' => $user['lastName'],
                     'id' => $user['id'],
                     'password' => $user['password'],
+                    'courses' => $courses,
                 ];
             } else {
                 $response->data = ['error' => 'Неправильный email или пароль'];

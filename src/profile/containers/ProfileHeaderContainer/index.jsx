@@ -55,6 +55,7 @@ class ProfileHeader extends Component {
         return (
             <CommonHeader>
                 <div className="m-r-20">
+                    <Button tag={Link} to="/teaching/course-creating" className="m-r-40" color="primary">Создать курс</Button>
                     <Button tag={Link} to="/teaching" className="m-r-40" color="primary">Преподавательская</Button>
                     <span className='oi oi-person m-r-10'/>
                     <span>{profile.lastName}</span>

@@ -34,8 +34,9 @@ class Course extends ActiveRecord
     public function rules()
     {
         return [
-//            [['name', 'poster', 'level', 'author'], 'required'],
+            [['name', 'description', 'poster'], 'string'],
             [['isPublic'], 'boolean'],
+            [['author'], 'integer'],
         ];
     }
 

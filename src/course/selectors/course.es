@@ -5,7 +5,7 @@ function selectorCourseState(state) {
 }
 
 function selectorCourseData(state) {
-    return selectorCourseState.data;
+    return selectorCourseState(state).data;
 }
 
 function selectorCourse(state, courseId) {
