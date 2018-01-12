@@ -1,5 +1,5 @@
 //Containers
-export * from './containers/MainPageContainer';
+export * from './containers/CourseEditorContainer';
 
 //Router
 export * from './router.es';

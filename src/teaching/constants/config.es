@@ -1,4 +1,4 @@
-const MODULE_NAME = 'modal-module';
+const MODULE_NAME = 'teaching-module';
 
 export {
     MODULE_NAME,

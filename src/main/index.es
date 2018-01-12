@@ -13,7 +13,7 @@ store.dispatch(checkLogin());
 
 render(
     <Provider store={store}>
-        <div>
+        <div style={{height: '100%'}}>
             <HeaderRouter/>
             <Router />
         </div>

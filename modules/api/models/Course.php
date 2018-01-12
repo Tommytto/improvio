@@ -25,7 +25,7 @@ class Course extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'user';
+        return 'courses';
     }
 
     /**
@@ -34,7 +34,7 @@ class Course extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'poster', 'level', 'time', 'lectureCount', 'price', 'datePublish', 'author', 'description'], 'required'],
+//            [['name', 'poster', 'level', 'author'], 'required'],
             [['isPublic'], 'boolean'],
         ];
     }
@@ -45,7 +45,7 @@ class Course extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => 'ID',
+            'name' => 'Username',
             'poster' => 'Username',
             'level' => 'Auth Key',
             'time' => 'Password Hash',

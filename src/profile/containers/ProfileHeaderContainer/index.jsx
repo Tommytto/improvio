@@ -7,6 +7,8 @@ import {Button} from 'reactstrap';
 import {openModal} from 'src/modal/index.es';
 import {Header as CommonHeader} from 'src/common/index.es';
 import {selectorProfileData} from "../../selectors/profile.es";
+import {logout} from "../../actions/login.es";
+import {Link} from "react-router-dom";
 
 /**
  * Привязка props к store
@@ -29,6 +31,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         openModal,
+        logout,
     }, dispatch);
 }
 
@@ -43,18 +46,21 @@ class ProfileHeader extends Component {
         this.block = bemCn('profile-header');
     }
 
+    onClickExit = () => {
+        this.props.logout();
+    };
+
     render() {
         const {profile} = this.props;
-        console.log(profile);
         return (
             <CommonHeader>
-                <span className="m-l-20">I M P </span>
                 <div className="m-r-20">
+                    <Button tag={Link} to="/teaching" className="m-r-40" color="primary">Преподавательская</Button>
                     <span className='oi oi-person m-r-10'/>
                     <span>{profile.lastName}</span>
                     &nbsp;
                     <span className="m-r-10">{profile.firstName}</span>
-                    <Button outline color="danger">Выйти</Button>
+                    <Button outline onClick={this.onClickExit} color="danger">Выйти</Button>
                 </div>
             </CommonHeader>
         )

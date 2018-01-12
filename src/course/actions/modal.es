@@ -1,7 +1,6 @@
 import {ActionTypes} from '../constants/modal'
 
 function openModal(modalKey) {
-    console.log(modalKey);
     return {
         type: ActionTypes.OPEN_MODAL,
         payload: modalKey,

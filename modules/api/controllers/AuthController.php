@@ -30,6 +30,7 @@ class AuthController extends Controller
                     'firstName' => $user['firstName'],
                     'lastName' => $user['lastName'],
                     'id' => $user['id'],
+                    'password' => $user['password'],
                 ];
             } else {
                 $response->data = ['error' => 'Неправильный email или пароль'];

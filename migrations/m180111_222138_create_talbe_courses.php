@@ -19,15 +19,15 @@ class m180111_222138_create_talbe_courses extends Migration
         }
         $this->createTable('courses', [
             'id' => $this->primaryKey(),
-            'name' => $this->string()->notNull(),
+            'name' => $this->string(),
             'poster' => $this->string(),
             'level' => $this->string(),
             'time' => $this->float(),
-            'lectureCount' => $this->smallInteger()->notNull(),
+            'lectureCount' => $this->smallInteger(),
             'price' => $this->smallInteger(),
             'isPublic' => $this->boolean()->defaultValue(true),
             'datePublish' => $this->date(),
-            'author' => $this->smallInteger()->notNull(),
+            'author' => $this->smallInteger(),
             'description' => $this->string(),
         ], $tableOptions);
     }

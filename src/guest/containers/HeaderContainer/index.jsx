@@ -7,6 +7,7 @@ import {Button} from 'reactstrap';
 import {openModal} from 'src/modal/index.es';
 import {Header as CommonHeader} from 'src/common/index.es';
 import {ModalTypes} from '../../constants/config.es';
+import {Link} from "react-router-dom";
 
 /**
  * Привязка props к store
@@ -46,7 +47,6 @@ class Header extends Component {
 
         return (
             <CommonHeader>
-                <span className="m-l-20">I M P </span>
                 <div className="m-r-20">
                     <Button className="m-r-10" outline color="primary" onClick={() => openModal(ModalTypes.LOGIN)}>Войти</Button>
                     <Button color="primary" onClick={() => openModal(ModalTypes.REGISTER)}>Зарегистрироваться</Button>

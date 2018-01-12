@@ -34,7 +34,7 @@ function mapDispatchToProps (dispatch) {
     }, dispatch);
 }
 
-class MainPage extends React.Component {
+class Example extends React.Component {
 
     /**
      * Описание свойств.
@@ -103,7 +103,7 @@ class MainPage extends React.Component {
      * Отображение компонента
      */
     render () {
-        return "Hello";
+        return null;
     }
 
     /**
@@ -121,7 +121,4 @@ class MainPage extends React.Component {
     // componentWillUnmount () {}
 }
 
-const MainPageContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(MainPage));
-export {
-    MainPageContainer,
-};
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Example));

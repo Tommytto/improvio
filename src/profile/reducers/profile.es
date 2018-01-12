@@ -11,7 +11,6 @@ const initialState = {
 };
 
 function profile(state = initialState, {type, payload}) {
-    console.log(type);
     switch (type) {
         case LoginActionTypes.LOGIN:
             return {

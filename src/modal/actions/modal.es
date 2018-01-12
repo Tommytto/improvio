@@ -8,7 +8,6 @@ function openModal(modalKey) {
 }
 
 function closeModal(modalKey) {
-    console.log(modalKey);
     return {
         type: ActionTypes.CLOSE_MODAL,
         payload: modalKey,

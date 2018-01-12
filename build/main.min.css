@@ -8972,6 +8972,11 @@ a.text-dark:focus, a.text-dark:hover {
 .example-component__text {
   color: darkslategray;
 }
+.course-edit {
+  padding: 40px 20px;
+  background-color: #fcfefe;
+  height: 100%;
+}
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

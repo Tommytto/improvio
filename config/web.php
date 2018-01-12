@@ -19,6 +19,9 @@ $config = [
                 'application/json' => 'yii\web\JsonParser',
             ],
         ],
+        'assetManager' => [
+            'linkAssets' => true,
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

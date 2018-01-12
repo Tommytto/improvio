@@ -1,11 +1,14 @@
 import React from 'react';
-import {HashRouter, Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 
-import {MainPageContainer} from './containers/MainPageContainer';
+import {CourseEditorContainer} from './containers/CourseEditorContainer';
+import {TeacherContainer} from "./containers/TeacherContainer";
 
 const Router = () => {
     return <Switch>
-            <Route exact path="/teaching" component={MainPageContainer} />
+            <Route exact path="/teaching" component={TeacherContainer} />
+            <Route exact path="/teaching/course-creating" component={CourseCreatingContainer} />
+            <Route exact path="/teaching/courses/:courseId" component={CourseEditorContainer} />
         </Switch>
 };
 
