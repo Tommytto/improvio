@@ -1,0 +1,41 @@
+@import (reference) 'responsive';
+
+// Create shadow for specific class
+.make-shadow(@class) {
+    .shadow_@{class} {
+        box-shadow+: 0 1px 5px 0 fade(#000000, 20);
+    }
+    .shadow_@{class}_i {
+        box-shadow: 0 1px 5px 0 fade(#000000, 20);
+    }
+    .shadow_@{class}_i_b {
+        box-shadow: inset 0 -4px 5px -5px rgba(0, 0, 0, 0.2);
+    }
+    .shadow_@{class}_i_l {
+        box-shadow: inset 5px 0 5px -5px rgba(0, 0, 0, 0.2);
+    }
+    .shadow_@{class}_i_r {
+        box-shadow: inset -5px 0 5px -5px rgba(0, 0, 0, 0.2);
+    }
+    .shadow_@{class}_i_t {
+        box-shadow: inset 0 6px 5px -5px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.make-shadow(xs);
+
+@media @sm-min {
+    .make-shadow(sm);
+}
+
+@media @md-min {
+    .make-shadow(md);
+}
+
+@media @lg-min {
+    .make-shadow(lg);
+}
+
+@media @xl {
+    .make-shadow(xl);
+}

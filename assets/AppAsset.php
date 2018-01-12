@@ -17,15 +17,14 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
-    public $css = [
-        'css/site.css',
-    ];
+    public $sourcePath = '@app/build';
+    public $css = ['main.min.css'];
     public $js = [
+        'vendor.bundle.min.js',
+        'module-name.min.js',
+        'main.min.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+//        'app\assets\IconicAsset',
     ];
 }

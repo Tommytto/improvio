@@ -1,0 +1,179 @@
+@import (reference) 'responsive';
+@import (reference) '~bootstrap/less/mixins/clearfix';
+
+// Reset the box-sizing
+//
+// Heads up! This reset may cause conflicts with some third-party widgets.
+// For recommendations on resolving such conflicts, see
+// http://getbootstrap.com/getting-started/#third-box-sizing
+* {
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+//** Number of columns in the grid.
+@grid-columns: 12;
+//** Padding between columns. Gets divided in half for the left and right.
+@grid-gutter-width: 20px;
+
+@grid-col-name: e('col');
+
+.grid {
+    .clearfix();
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: floor((@grid-gutter-width / 2));
+    padding-right: ceil((@grid-gutter-width / 2));
+    position: relative;
+}
+
+// Row
+// Rows contain and clear the floats of your columns.
+.row {
+    .clearfix();
+    margin-left: ceil((@grid-gutter-width / -2));
+    margin-right: floor((@grid-gutter-width / -2));
+    position: relative;
+}
+
+.make-grid-columns() {
+    // Common styles for all sizes of grid columns, widths 1-12
+    .col(@index) { // initial
+        @item1: ~'.@{grid-col-name}_xs_@{index}';
+        @item2: ~'@{item1}, .@{grid-col-name}_sm_@{index}';
+        @item3: ~'@{item2}, .@{grid-col-name}_md_@{index}';
+        @item4: ~'@{item3}, .@{grid-col-name}_lg_@{index}';
+        @item: ~'@{item4}, .@{grid-col-name}_xl_@{index}';
+        //@item1: ~'.@{grid-col-name}_xs_@{index}, .@{grid-col-name}_xs_vw_@{index}';
+        //@item2: ~'@{item1}, .@{grid-col-name}_sm_@{index}, .@{grid-col-name}_sm_vw_@{index}';
+        //@item3: ~'@{item2}, .@{grid-col-name}_md_@{index}, .@{grid-col-name}_md_vw_@{index}';
+        //@item4: ~'@{item3}, .@{grid-col-name}_lg_@{index}, .@{grid-col-name}_lg_vw_@{index}';
+        //@item: ~'@{item4}, .@{grid-col-name}_xl_@{index}, .@{grid-col-name}_xl_vw_@{index}';
+        .col((@index + 1), @item);
+    }
+    .col(@index, @list) when (@index =< @grid-columns) { // general; '=<' isn't a typo
+        @item1: ~'.@{grid-col-name}_xs_@{index}';
+        @item2: ~'@{item1}, .@{grid-col-name}_sm_@{index}';
+        @item3: ~'@{item2}, .@{grid-col-name}_md_@{index}';
+        @item4: ~'@{item3}, .@{grid-col-name}_lg_@{index}';
+        @item: ~'@{item4}, .@{grid-col-name}_xl_@{index}';
+        //@item1: ~'.@{grid-col-name}_xs_@{index}, .@{grid-col-name}_xs_vw_@{index}';
+        //@item2: ~'@{item1}, .@{grid-col-name}_sm_@{index}, .@{grid-col-name}_sm_vw_@{index}';
+        //@item3: ~'@{item2}, .@{grid-col-name}_md_@{index}, .@{grid-col-name}_md_vw_@{index}';
+        //@item4: ~'@{item3}, .@{grid-col-name}_lg_@{index}, .@{grid-col-name}_lg_vw_@{index}';
+        //@item: ~'@{item4}, .@{grid-col-name}_xl_@{index}, .@{grid-col-name}_xl_vw_@{index}';
+        .col((@index + 1), ~'@{list}, @{item}');
+    }
+    .col(@index, @list) when (@index > @grid-columns) { // terminal
+        @{list} {
+            position: relative;
+            // Prevent columns from collapsing when empty
+            min-height: 1px;
+            // Inner gutter via padding
+            padding-left: ceil((@grid-gutter-width / 2));
+            padding-right: floor((@grid-gutter-width / 2));
+            transition: margin-left ease 900ms, left ease 900ms, right ease 900ms, width ease 900ms;
+        }
+    }
+    .col(0); // kickstart it
+}
+
+.calc-grid-column(@index, @class, @type) when (@type = width) and (@index >= 0) {
+    .@{grid-col-name}_@{class}_@{index} {
+        width: percentage((@index / @grid-columns));
+    }
+}
+
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index > 0) {
+    .@{grid-col-name}_@{class}_push_@{index} {
+        left: percentage((@index / @grid-columns));
+    }
+}
+
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index = 0) {
+    .@{grid-col-name}_@{class}_push_0 {
+        left: auto;
+    }
+}
+
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index > 0) {
+    .@{grid-col-name}_@{class}_pull_@{index} {
+        right: percentage((@index / @grid-columns));
+    }
+}
+
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index = 0) {
+    .@{grid-col-name}_@{class}_pull_0 {
+        right: auto;
+    }
+}
+
+//.calc-grid-column(@index, @class, @type) when (@type = widthvw) and (@index > 0) {
+//    .@{grid-col-name}_@{class}_vw_@{index} {
+//        width: (@index / @grid-columns) * 100vw;
+//    }
+//}
+//
+//.calc-grid-column(@index, @class, @type) when (@type = pushvw) and (@index > 0) {
+//    .@{grid-col-name}_@{class}_push_vw_@{index} {
+//        left: (@index / @grid-columns) * 100vw;
+//    }
+//}
+//
+//.calc-grid-column(@index, @class, @type) when (@type = pullvw) and (@index > 0) {
+//    .@{grid-col-name}_@{class}_pull_vw_@{index} {
+//        right: (@index / @grid-columns) * 100vw;
+//    }
+//}
+//
+//.calc-grid-column(@index, @class, @type) when (@type = offsetvw) {
+//    .@{grid-col-name}_@{class}_offset_vw_@{index} {
+//        margin-left: (@index / @grid-columns) * 100vw;
+//    }
+//}
+
+// Basic looping in LESS
+.loop-grid-columns(@index, @class, @type) when (@index >= 0) {
+    .calc-grid-column(@index, @class, @type);
+    // next iteration
+    .loop-grid-columns((@index - 1), @class, @type);
+}
+
+// Create grid for specific class
+.make-grid(@class) {
+    .loop-grid-columns(@grid-columns, @class, width);
+    .loop-grid-columns(@grid-columns, @class, pull);
+    .loop-grid-columns(@grid-columns, @class, push);
+    //.loop-grid-columns(@grid-columns, @class, widthvw);
+    //.loop-grid-columns(@grid-columns, @class, pullvw);
+    //.loop-grid-columns(@grid-columns, @class, pushvw);
+    //.loop-grid-columns(@grid-columns, @class, offsetvw);
+}
+
+.make-grid-columns();
+
+.make-grid(xs);
+
+@media @sm-min {
+    .make-grid(sm);
+}
+
+@media @md-min {
+    .make-grid(md);
+}
+
+@media @lg-min {
+    .make-grid(lg);
+}
+
+@media @xl {
+    .make-grid(xl);
+}
