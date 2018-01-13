@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import bemCn from 'bem-cn';
 
-import {getCourse} from 'src/common/actions/course-list';
 import CoursePreview from 'src/common/components/CoursePreview'
 import {selectorCourse} from '../../selectors/course-list.es';
 

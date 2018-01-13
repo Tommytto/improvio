@@ -7,6 +7,7 @@ import {Button, Form, FormGroup, Input, Label} from "reactstrap";
 import {createCourse, updateCourse} from "../../actions/teaching.es";
 import {selectorProfileId} from "../../../profile/selectors/profile.es";
 import {selectorCourse} from "../../../course/selectors/course.es";
+import {getCourse} from "../../../course/actions/course.es";
 
 // import {exampleSimple, exampleGet, exampleCreate, exampleUpdate, exampleDelete} from 'src/redux/actions/example';
 
@@ -18,9 +19,9 @@ import {selectorCourse} from "../../../course/selectors/course.es";
  */
 function mapStateToProps(state, props) {
     const courseId = props.match.params.courseId;
-    console.log(selectorCourse(state, courseId));
     return {
         profileId: selectorProfileId(state),
+        courseId,
         courseInfo: selectorCourse(state, courseId),
     };
 }
@@ -34,6 +35,7 @@ function mapStateToProps(state, props) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         updateCourse,
+        getCourse,
     }, dispatch);
 }
 
@@ -66,16 +68,37 @@ class InfoCourse extends React.Component {
 
     changeInputData = (event) => {
         const target = event.currentTarget;
-        this.setState({
-            [target.name]: target.value,
-        });
+        if ('file' === target.type) {
+            console.log(target.files[0]);
+            this.setState({
+                [target.name]: target.files[0],
+            });
+        } else {
+            this.setState({
+                [target.name]: target.value,
+            });
+        }
     };
 
     onSubmit = (event, data) => {
         event.preventDefault();
-        const {profileId, updateCourse, match} = this.props;
+        const {updateCourse, match} = this.props;
+        console.log(data);
         updateCourse(data, match.params.courseId);
     };
+
+    async componentDidMount() {
+        const {getCourse, courseId} = this.props;
+        await getCourse(courseId);
+        const {name, poster, level, description} = this.props.courseInfo;
+        this.setState({
+            name,
+            poster: poster || '',
+            level: level || '0',
+            description: description || '',
+        });
+        console.log(this.props.courseInfo);
+    }
 
     render() {
         return (
@@ -87,7 +110,7 @@ class InfoCourse extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label for="poster">Главное изображение курса</Label>
-                    <Input type="text" name="poster" value={this.state.poster} onChange={this.changeInputData}
+                    <Input type="file" name="poster" onChange={this.changeInputData}
                            id="course-poster" placeholder="Добавьте ссылку на изображение"/>
                 </FormGroup>
                 <FormGroup>

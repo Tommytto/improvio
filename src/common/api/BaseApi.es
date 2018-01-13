@@ -1,3 +1,5 @@
+import {convertToFormData} from "../helpers/ajax.es";
+
 export default class BaseApi {
     // constructor (base = '') {
     //     this.base = base;
@@ -9,20 +11,25 @@ export default class BaseApi {
      * @param {string}      url
      * @param {string}      method
      * @param {FormData}    data
-     * @param {object}      headers
+     * @param {boolean}      haveFile
      *
      * @returns {Promise}
      */
-    async request (url, method = 'GET', data = null, headers = {}) {
-        const options = {
+    async request (url, method = 'GET', data = null, haveFile = false) {
+        let options = {
             method,
             credentials: 'include',
             headers: {
-                ...headers,
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(data),
         };
+        if (data) {
+            options.body = JSON.stringify(data);
+        }
+        if (haveFile) {
+            options.body = convertToFormData(data);
+            options.headers['content-type'] = 'multipart/form-data';
+        }
         const response = await fetch(url, options);
         const responseData = await response.json();
         return {

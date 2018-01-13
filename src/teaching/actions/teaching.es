@@ -1,10 +1,10 @@
 import {ActionTypes} from '../constants/teaching.es'
 import {ActionTypes as CourseActionTypes} from 'src/course/constants/course.es'
 
-const createCourse = (courseData) => async (dispatch, getState, {TeachingApi}) => {
+const createCourse = (courseData) => async (dispatch, getState, {CourseApi}) => {
     dispatch({type: ActionTypes.COURSE_CREATE_START});
     try {
-        const {data} = await TeachingApi.createCourse(courseData);
+        const {data} = await CourseApi.createCourse(courseData);
         dispatch({type: ActionTypes.COURSE_CREATE_SUCCESS});
         dispatch({type: CourseActionTypes.SET_COURSE_INFO, payload: data});
         return data.id
@@ -14,10 +14,10 @@ const createCourse = (courseData) => async (dispatch, getState, {TeachingApi}) =
     }
 };
 
-const updateCourse = (courseData, courseId) => async (dispatch, getState, {TeachingApi}) => {
+const updateCourse = (courseData, courseId) => async (dispatch, getState, {CourseApi}) => {
     // dispatch({type: ActionTypes.COURSE_CREATE_START});
     try {
-        const {data} = await TeachingApi.updateCourse(courseData, courseId);
+        const {data} = await CourseApi.updateCourse(courseData, courseId);
         // dispatch({type: ActionTypes.COURSE_CREATE_SUCCESS});
         // dispatch({type: CourseActionTypes.SET_COURSE_INFO, payload: data});
         // return data.id

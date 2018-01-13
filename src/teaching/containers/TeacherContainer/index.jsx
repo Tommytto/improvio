@@ -58,7 +58,7 @@ class Teacher extends React.Component {
         return (
             <div className={this.block()}>
                 {
-                    courseList && courseList.length ? <CoursePreviewList profile={profile} courseList={courseList}/> : <HelloTeacher/>
+                    courseList && courseList.length ? <CoursePreviewList posterLink="/teaching/courses" profile={profile} courseList={courseList}/> : <HelloTeacher/>
                 }
             </div>
         )

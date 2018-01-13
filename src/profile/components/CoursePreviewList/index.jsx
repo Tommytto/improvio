@@ -2,10 +2,9 @@ import React from 'react';
 import bemCn from 'bem-cn';
 
 import './style.less'
-import CoursePreview from '../CoursePreview/index';
-import CoursePreviewContainer from '../../containers/CoursePreviewContainer/index';
 import {Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle} from "reactstrap";
 import {Link} from "react-router-dom";
+
 const block = bemCn('course-preview-list');
 
 
@@ -19,24 +18,24 @@ class CoursePreviewList extends React.Component {
 
     }
 
-    render () {
-        const {bemWrapper, courseIdList, courseList, profile} = this.props;
+    render() {
+        const {bemWrapper, courseIdList, courseList, profile, posterLink} = this.props;
         return (
             <div className="row">
                 {
                     courseList.map((item, index) => {
                         return (
                             <div className="col-3 m-t-20" key={index}>
-                                <Link to={`/teaching/courses/${item.id}`}>
                                     <Card>
-                                        <CardImg top width="100%" src={item.poster} alt="Card image cap" />
+                                        <Link to={`${posterLink}/${item.id}`}>
+                                            <CardImg top width="100%" src={item.poster} alt="Card image cap"/>
+                                        </Link>
                                         <CardBody>
                                             <CardTitle>{item.name}</CardTitle>
                                             <CardSubtitle>{`${profile.lastName} ${profile.firstName}`}</CardSubtitle>
                                             <CardText>{item.description}</CardText>
                                         </CardBody>
                                     </Card>
-                                </Link>
                             </div>
                         )
                     })

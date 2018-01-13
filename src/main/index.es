@@ -1,7 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
-import {getCourseList} from 'src/common/index.es';
 
 import {Router} from './router.es';
 import {store} from './store.es';
@@ -40,4 +39,3 @@ if (module.hot) {
     });
 }
 
-store.dispatch(getCourseList(0, 10));

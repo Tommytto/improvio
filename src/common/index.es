@@ -1,12 +1,6 @@
 //Helpers
 export * from './helpers/configure-store.es';
 
-//Actions
-export * from './actions/course-list.es';
-
-//Api
-export * from './api/CourseList.es';
-
 //Reducers
 export * from './reducers/index.es';
 
