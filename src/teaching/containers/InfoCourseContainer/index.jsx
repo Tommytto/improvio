@@ -68,16 +68,16 @@ class InfoCourse extends React.Component {
 
     changeInputData = (event) => {
         const target = event.currentTarget;
-        if ('file' === target.type) {
-            console.log(target.files[0]);
-            this.setState({
-                [target.name]: target.files[0],
-            });
-        } else {
+        // if ('file' === target.type) {
+        //     console.log(target.files[0]);
+        //     this.setState({
+        //         [target.name]: target.files[0],
+        //     });
+        // } else {
             this.setState({
                 [target.name]: target.value,
             });
-        }
+        // }
     };
 
     onSubmit = (event, data) => {
@@ -110,9 +110,14 @@ class InfoCourse extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label for="poster">Главное изображение курса</Label>
-                    <Input type="file" name="poster" onChange={this.changeInputData}
+                    <Input type="text" name="poster" value={this.state.poster} onChange={this.changeInputData}
                            id="course-poster" placeholder="Добавьте ссылку на изображение"/>
                 </FormGroup>
+                {/*<FormGroup>*/}
+                    {/*<Label for="poster">Главное изображение курса</Label>*/}
+                    {/*<Input type="file" name="poster" onChange={this.changeInputData}*/}
+                           {/*id="course-poster" placeholder="Добавьте ссылку на изображение"/>*/}
+                {/*</FormGroup>*/}
                 <FormGroup>
                     <Label for="level">Сложность курса</Label>
                     <Input type="select" name="level" value={this.state.level} onChange={this.changeInputData}

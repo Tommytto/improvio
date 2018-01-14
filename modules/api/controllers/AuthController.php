@@ -1,6 +1,6 @@
 <?php
 
-namespace  p-4\controllers;
+namespace  app\modules\api\controllers;
 
 use app\modules\api\models\Course;
 use app\modules\api\models\User;

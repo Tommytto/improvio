@@ -30,8 +30,8 @@ class UpdateCourceAction extends UpdateAction
      */
     public function run($id)
     {
-        print_r(Yii::$app->request->post());
-        die();
+//        print_r(Yii::$app->request->post());
+//        die();
         return ['ololo' => 'Timur'];
         /* @var $model ActiveRecord */
         $model = $this->findModel($id);
