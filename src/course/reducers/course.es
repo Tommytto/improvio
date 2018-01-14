@@ -2,7 +2,6 @@ import {ActionTypes} from '../constants/course.es';
 
 const initialState = {
     data:{},
-    list:[],
 };
 
 const course = (state = initialState, {type, payload}) => {
@@ -17,10 +16,14 @@ const course = (state = initialState, {type, payload}) => {
                         ...payload,
                     }
                 },
-                list: [
-                    ...state.list,
-                    payload.id,
-                ]
+            };
+        case ActionTypes.SET_COURSE_LIST:
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    ...payload.entities.courses,
+                },
             };
         default:
             return state;

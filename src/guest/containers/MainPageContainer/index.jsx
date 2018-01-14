@@ -5,14 +5,12 @@ import bemCn from 'bem-cn';
 import './style.less';
 
 import 'bootstrap/dist/css/bootstrap.css';
-
-import HeaderContainer from '../../containers/HeaderContainer';
 import FooterContainer from '../../containers/FooterContainer';
 import {ModalLoginContainer} from '../../containers/ModalLoginContainer';
 import ModalRegisterContainer from '../../containers/ModalRegisterContainer';
-import CoursePreviewList from 'src/common/components/CoursePreviewList';
 
 import {selectorCourseIdList} from 'src/common/index.es';
+import CoursePreviewList from "src/course/components/CoursePreviewList";
 
 /**
  * Привязка props к store
@@ -63,7 +61,7 @@ class MainPage extends React.Component {
                             Let's improve yourself!
                         </h1>
                     </div>
-                    <CoursePreviewList courseIdList={courseIdList}/>
+                    {/*<CoursePreviewList courseIdList={courseIdList}/>*/}
                 </main>
                 <FooterContainer className={this.block}/>
                 <ModalRegisterContainer/>

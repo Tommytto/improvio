@@ -8936,13 +8936,7 @@ a.text-dark:focus, a.text-dark:hover {
   .table-bordered td {
     border: 1px solid #ddd !important;
   }
-}.example-component {
-  background-color: lightblue;
-}
-.example-component__text {
-  color: darkslategray;
-}
-.header {
+}.header {
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
@@ -8972,19 +8966,6 @@ a.text-dark:focus, a.text-dark:hover {
   font-size: 24px;
   margin: 0 15px;
 }
-.course-edit {
-  padding: 40px 20px;
-  background-color: #fcfefe;
-  height: 100%;
-}
-.teaching {
-  height: 100%;
-  background-color: #fcfefe;
-  padding: 40px 20px;
-}
-.teaching .jumbotron {
-  background-color: #ffffff;
-}
 .example-component {
   background-color: lightblue;
 }
@@ -9004,13 +8985,76 @@ a.text-dark:focus, a.text-dark:hover {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-flow: row wrap;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
+}
+.course-preview {
+  background-color: #fcfefe;
+  -webkit-box-shadow: 0 7px 10px -4px gray;
+          box-shadow: 0 7px 10px -4px gray;
+  cursor: pointer;
+  height: 290px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  width: 216px;
+}
+.course-preview:last-child {
+  margin-right: 0;
+}
+.course-preview:hover {
+  -webkit-box-shadow: 0 7px 10px 0 gray;
+          box-shadow: 0 7px 10px 0 gray;
+}
+.course-preview__content {
+  padding: 10px;
+}
+.course-preview__header {
+  color: #000;
+  display: -webkit-box;
+  font-size: 16px;
+  font-weight: bold;
+  overflow: hidden;
+  margin-bottom: 10px;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.course-preview__author {
+  color: gray;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.course-preview__rating {
+  margin-bottom: 10px;
+}
+.course-preview__poster-wrapper {
+  background-size: cover;
+  height: 125px;
+}
+.course-preview__poster {
+  width: 100%;
+}
+.course-edit {
+  padding: 40px 20px;
+  background-color: #fcfefe;
+  height: 100%;
+}
+.teaching {
+  height: 100%;
+  background-color: #fcfefe;
+}
+.teaching .jumbotron {
+  background-color: #ffffff;
+}
+.example-component {
+  background-color: lightblue;
+}
+.example-component__text {
+  color: darkslategray;
 }
 .course-creator {
   padding: 40px 20px;
@@ -9045,6 +9089,11 @@ body {
           user-select: none;
   cursor: default;
   position: fixed;
+}
+.center-block {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 40px;
 }
 #root {
   height: 100%;

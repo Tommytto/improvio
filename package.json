@@ -22,6 +22,7 @@
     "bem-cn": "^2.1.3",
     "bootstrap": "^4.0.0-beta.3",
     "normalizr": "^3.2.4",
+    "open-iconic": "git+https://git@github.com/iconic/open-iconic.git",
     "react": "^16.2.0",
     "react-baron": "^0.8.0",
     "react-dom": "^16.2.0",
@@ -33,8 +34,7 @@
     "reactstrap": "^5.0.0-alpha.4",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "whatwg-fetch": "^2.0.3",
-    "open-iconic": "git+https://git@github.com/iconic/open-iconic.git"
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.6",

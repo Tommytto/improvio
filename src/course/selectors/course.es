@@ -12,7 +12,15 @@ function selectorCourse(state, courseId) {
     return selectorCourseData(state)[courseId];
 }
 
+function selectorCourseDataByList(state, courseList) {
+    if (!courseList || !courseList.length) {
+        return null;
+    }
+    return courseList.map((courseId) => selectorCourse(state, courseId));
+}
+
 export {
     selectorCourseData,
     selectorCourse,
+    selectorCourseDataByList,
 };

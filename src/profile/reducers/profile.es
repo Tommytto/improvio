@@ -34,9 +34,10 @@ function profile(state = initialState, {type, payload}) {
                 isLoading: true,
             };
         case ProfileActionTypes.SET_PROFILE_SUCCESS:
+            console.log(payload.entities.profile[payload.result]);
             return {
                 ...state,
-                ...payload,
+                ...payload.entities.profile[payload.result],
                 isLoading: false,
             };
         case ProfileActionTypes.SET_PROFILE_ERROR:

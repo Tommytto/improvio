@@ -12,10 +12,15 @@ function selectorProfileId(state) {
     return selectorProfileData(state).id;
 }
 
+function selectorProfileCourses(state) {
+    return selectorProfileData(state).courses;
+}
+
 
 
 export {
     selectorProfileData,
     selectorIsLogin,
     selectorProfileId,
+    selectorProfileCourses,
 };

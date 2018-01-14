@@ -1,19 +1,23 @@
 import {getFromStorage, putInStorage, removeFromStorage} from "../../common/helpers/storage.es";
 import {ActionTypes as LoginActionTypes} from "../constants/login.es";
 import {ActionTypes as ProfileActionTypes} from "../constants/profile.es";
+import {ActionTypes as CourseActionTypes} from "src/course/constants/course.es";
+import {schemeProfile} from "src/profile/scheme/profile.es";
 
 const login = (formData) => async (dispatch, getState, {ProfileApi}) => {
-    let responseData;
     try {
         const {data} = await ProfileApi.auth(formData);
-        responseData = data;
-        if (responseData && responseData.email && responseData.password) {
-            putInStorage('id', responseData.id);
-            putInStorage('email', responseData.email);
-            putInStorage('password', responseData.password);
-            dispatch({type: ProfileActionTypes.SET_PROFILE_SUCCESS, payload: responseData});
-            dispatch({type: LoginActionTypes.LOGIN_SUCCESS});
+        if (data.error) {
+            throw data.error;
         }
+        putInStorage('id', data.id);
+        putInStorage('email', data.email);
+        putInStorage('password', data.password);
+        const normData = schemeProfile(data);
+        console.log(normData);
+        dispatch({type: ProfileActionTypes.SET_PROFILE_SUCCESS, payload: normData});
+        dispatch({type: CourseActionTypes.SET_COURSE_LIST, payload: normData});
+        dispatch({type: LoginActionTypes.LOGIN_SUCCESS});
     } catch (err) {
         console.log(err);
     }

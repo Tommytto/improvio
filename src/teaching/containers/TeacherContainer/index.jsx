@@ -1,15 +1,13 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Link, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
-import {Button, Jumbotron} from "reactstrap";
 import bemCn from 'bem-cn';
-// import {exampleSimple, exampleGet, exampleCreate, exampleUpdate, exampleDelete} from 'src/redux/actions/example';
 import './style.less';
 import {selectorProfileData} from "../../../profile/selectors/profile.es";
 import {HelloTeacher} from "../../components/HelloTeacher";
-import CoursePreviewList from "../../../profile/components/CoursePreviewList";
+import CoursePreviewList from "src/course/components/CoursePreviewList";
+
 /**
  * Привязка props к store
  *
@@ -56,7 +54,7 @@ class Teacher extends React.Component {
     render () {
         const {courseList, profile} = this.props;
         return (
-            <div className={this.block()}>
+            <div className={this.block.mix('center-block')()}>
                 {
                     courseList && courseList.length ? <CoursePreviewList posterLink="/teaching/courses" profile={profile} courseList={courseList}/> : <HelloTeacher/>
                 }
