@@ -1,20 +1,12 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
-import {
-    Button,
-    Card, CardText, CardTitle,
-    Col,
-    Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem, NavLink, Row, TabContent,
-    TabPane
-} from "reactstrap";
+import {Button, Card, CardText, CardTitle, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane} from "reactstrap";
 import bemCn from 'bem-cn';
 import './style.less';
 import {InfoCourseContainer} from "../InfoCourseContainer";
 
-// import {exampleSimple, exampleGet, exampleCreate, exampleUpdate, exampleDelete} from 'src/redux/actions/example';
 
 /**
  * Привязка props к store
@@ -77,7 +69,7 @@ class CourseEditor extends React.Component {
     render() {
         console.log(this.state.activeTab);
         return (
-            <div className={this.block()}>
+            <div className={this.block.mix('center-block')()}>
                 <Row>
                     <div className="col-3">
                         <Nav vertical pills>

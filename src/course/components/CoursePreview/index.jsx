@@ -12,10 +12,6 @@ class CoursePreview extends React.Component {
         this.initBem();
     }
 
-    static defaultProps = {
-        link: '#',
-    };
-
     initBem() {
         this.bemPosterWrapper = block('poster-wrapper');
         this.bemPoster = block('poster');
@@ -27,30 +23,49 @@ class CoursePreview extends React.Component {
     }
 
     render () {
-        const {bemWrapper, course, link} = this.props;
+        const {bemWrapper, course} = this.props;
         return (
             <div className={bemWrapper ? block.mix(bemWrapper(block())) : block()}>
-                <Link to={`${link}/${course.id}`}>
-                    <div className={this.bemPosterWrapper()} style={{backgroundImage: `url(${course.poster})`}}>
-                        {/*<img className={this.bemPoster()} src={course.poster}/>*/}
-                    </div>
-                </Link>
+                {this.renderPoster()}
                 <div className={this.bemContent()}>
                     <header className={this.bemHeader()}>
                         {course.name}
                     </header>
-                    <div className={this.bemAuthor()}>
-                        {course.author}
+                    {this.renderAuthor()}
+                    <div className={this.bemRating()}>
+                        {course.description}
                     </div>
-                    {/*<div className={this.bemRating()}>*/}
-                        {/*Оценили {course.rating.count} раз!*/}
-                    {/*</div>*/}
                     {/*<div className={this.bemPrice()}>*/}
                         {/*Всего за {course.price} рублей!*/}
                     {/*</div>*/}
                 </div>
             </div>
         );
+    }
+
+    renderPoster() {
+        const {course, link} = this.props;
+        if (link) {
+            console.log("here");
+            return (
+                <Link to={`${link}/${course.id}`}>
+                    <div className={this.bemPosterWrapper()} style={{backgroundImage: `url(${course.poster})`}}/>
+                </Link>
+            )
+        }
+        return <div className={this.bemPosterWrapper()} style={{backgroundImage: `url(${course.poster})`}}/>;
+    }
+
+    renderAuthor() {
+        const {author} = this.props;
+        if (author) {
+            return (
+                <div className={this.bemAuthor()}>
+                    {`${author.lastName} ${author.firstName}`}
+                </div>
+            )
+        }
+        return null;
     }
 
 }

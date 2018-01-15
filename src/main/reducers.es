@@ -20,11 +20,16 @@ import {
     MODULE_NAME as COURSE_MODULE_NAME
 } from 'src/course/index.es';
 
+import {
+    reducers as userReducers,
+    MODULE_NAME as USER_MODULE_NAME
+} from 'src/user/index.es'
 const appReducer = combineReducers({
-    [COMMON_MODULE_NAME]: commonReducers,
+    // [COMMON_MODULE_NAME]: commonReducers,
     [MODAL_MODULE_NAME]: modalReducers,
     [PROFILE_MODULE_NAME]: profileReducers,
     [COURSE_MODULE_NAME]: courseReducers,
+    [USER_MODULE_NAME]: userReducers,
 });
 
 

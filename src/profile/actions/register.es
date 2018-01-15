@@ -1,7 +1,8 @@
+import {login} from "src/profile/actions/login.es";
 
 const register = (formData) => async (dispatch, getState, {ProfileApi}) => {
-    const response = await ProfileApi.register(formData);
-    console.log(response);
+    const {data} = await ProfileApi.register(formData);
+    dispatch(login(data));
 };
 
 export {

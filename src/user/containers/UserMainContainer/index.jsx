@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import bemCn from 'bem-cn';
 import './style.less';
 import {selectorCourseData} from "src/course/selectors/course.es";
 import CoursePreviewList from "src/course/components/CoursePreviewList";
-
 
 /**
  * Привязка props к store
@@ -14,7 +13,7 @@ import CoursePreviewList from "src/course/components/CoursePreviewList";
  * @return {{prop}}
  */
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
     return {
         courseData: selectorCourseData(state),
     };
@@ -26,10 +25,8 @@ function mapStateToProps (state) {
  * @param dispatch
  * @return {{importedAction: *}|B|N}
  */
-function mapDispatchToProps (dispatch) {
-    return bindActionCreators({
-
-    }, dispatch);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({}, dispatch);
 }
 
 class UserMain extends React.Component {
@@ -42,14 +39,27 @@ class UserMain extends React.Component {
         this.block = bemCn('user-main');
     }
 
-    render () {
-        const {courseData} = this.props;
+    render() {
+        console.log("here");
         return (
-            <div className={this.block.mix('center-block')()}>
-                <h1>All courses</h1>
-                {courseData ? <CoursePreviewList courseData={courseData}/> : null}
+            <div className={this.block.mix('center-block clearfix')()}>
+                {this.renderCourseData()}
             </div>
         );
+    }
+
+    renderCourseData() {
+        const {courseData} = this.props;
+        console.log(courseData);
+        if (courseData && Object.keys(courseData).length) {
+            return (
+                <Fragment>
+                    <h3 className="m-b-20">Все курсы</h3>
+                    <CoursePreviewList courseData={courseData}/>
+                </Fragment>
+            )
+        }
+        return <h3>Извините курсов еще нет, скорее регистрируйтесь и станьте первым преподавателем</h3>
     }
 
 }

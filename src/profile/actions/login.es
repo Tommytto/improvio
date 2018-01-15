@@ -14,9 +14,7 @@ const login = (formData) => async (dispatch, getState, {ProfileApi}) => {
         putInStorage('email', data.email);
         putInStorage('password', data.password);
         const normData = schemeProfile(data);
-        console.log(normData);
         dispatch({type: ProfileActionTypes.SET_PROFILE_SUCCESS, payload: normData});
-        dispatch({type: CourseActionTypes.SET_COURSE_LIST, payload: normData});
         dispatch({type: LoginActionTypes.LOGIN_SUCCESS});
     } catch (err) {
         console.log(err);
@@ -27,7 +25,9 @@ const login = (formData) => async (dispatch, getState, {ProfileApi}) => {
 const checkLogin = () => (dispatch) => {
     const email = getFromStorage('email');
     const password = getFromStorage('password');
-    dispatch(login({email, password}));
+    if (email && password) {
+        dispatch(login({email, password}));
+    }
 };
 
 const logout = () => (dispatch) => {

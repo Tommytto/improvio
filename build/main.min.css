@@ -23,7 +23,8 @@
   -webkit-flex-basis: auto;
       -ms-flex-preferred-size: auto;
           flex-basis: auto;
-  background-color: #eaf6f6;
+  background-color: #fcfefe;
+  height: 100%;
 }
 .main-page__poster {
   background-size: cover;
@@ -8943,7 +8944,7 @@ a.text-dark:focus, a.text-dark:hover {
           align-items: center;
   -webkit-box-shadow: 0 0 1px 1px rgba(20, 23, 28, 0.1), 0 3px 1px 0 rgba(20, 23, 28, 0.1);
           box-shadow: 0 0 1px 1px rgba(20, 23, 28, 0.1), 0 3px 1px 0 rgba(20, 23, 28, 0.1);
-  background-color: #fff;
+  background-color: #eaf6f6;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -9000,6 +9001,74 @@ a.text-dark:focus, a.text-dark:hover {
   margin-right: 10px;
   margin-bottom: 15px;
   width: 216px;
+  float: left;
+}
+.course-preview:last-child {
+  margin-right: 0;
+}
+.course-preview:hover {
+  -webkit-box-shadow: 0 7px 10px 0 gray;
+          box-shadow: 0 7px 10px 0 gray;
+}
+.course-preview__content {
+  padding: 10px;
+}
+.course-preview__header {
+  color: #000;
+  display: -webkit-box;
+  font-size: 16px;
+  font-weight: bold;
+  overflow: hidden;
+  margin-bottom: 10px;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.course-preview__author {
+  color: gray;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.course-preview__rating {
+  margin-bottom: 10px;
+}
+.course-preview__poster-wrapper {
+  background-size: cover;
+  height: 125px;
+}
+.course-preview__poster {
+  width: 100%;
+}
+.course-preview-list {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: row wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+.course-preview {
+  background-color: #fcfefe;
+  -webkit-box-shadow: 0 7px 10px -4px gray;
+          box-shadow: 0 7px 10px -4px gray;
+  cursor: pointer;
+  height: 290px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  width: 216px;
+  float: left;
 }
 .course-preview:last-child {
   margin-right: 0;
@@ -9098,6 +9167,7 @@ body {
 #root {
   height: 100%;
   width: 100%;
+  overflow: scroll;
 }
 .m-b-0 {
   margin-bottom: 0 !important;

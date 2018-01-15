@@ -1,13 +1,12 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import bemCn from "bem-cn";
 import {Button, Input} from "reactstrap";
 import './style.less';
-import {createCourse} from "../../actions/teaching.es";
 import {selectorProfileId} from "../../../profile/selectors/profile.es";
+import {createCourse} from "src/course/actions/course.es";
 
 // import {exampleSimple, exampleGet, exampleCreate, exampleUpdate, exampleDelete} from 'src/redux/actions/example';
 
@@ -68,7 +67,7 @@ class CourseCreator extends React.Component {
      */
     render() {
         return (
-            <div className={this.block()}>
+            <div className={this.block.mix('center-block')()}>
                 <div className="col-xs-12 col-md-6 col-lg-4 m-t-40">
                     <h1>Придумай название!</h1>
                     <Input

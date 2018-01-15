@@ -27,7 +27,11 @@ class AuthController extends Controller
             $password = $request->post()['password'];
             $user = $model::find()->where(['email' => $email, 'password' => $password])->one();
             $courses = $courseModel::find()->where(['author' => $user['id']])->all();
-
+            $courseList = [];
+            foreach($courses as $course)
+            {
+                array_push($courseList, $course['id']);
+            }
             if ($user) {
                 $response->data = [
                     'email' => $user['email'],
@@ -35,7 +39,7 @@ class AuthController extends Controller
                     'lastName' => $user['lastName'],
                     'id' => $user['id'],
                     'password' => $user['password'],
-                    'courses' => $courses,
+                    'courses' => $courseList,
                 ];
             } else {
                 $response->data = ['error' => 'Неправильный email или пароль'];

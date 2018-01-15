@@ -16,11 +16,16 @@ import {
     Api as CourseApi
 } from 'src/course/index.es'
 
+import {
+    Api as UserApi
+} from 'src/user/api/index.es'
+
 const isProduction = process.env.NODE_ENV === 'production';
 const store = configureStore(!isProduction, storeReducers, {
     'ProfileApi': new ProfileApi(),
     'TeachingApi': new TeachingApi(),
     'CourseApi': new CourseApi(),
+    'UserApi': new UserApi(),
 });
 
 export {

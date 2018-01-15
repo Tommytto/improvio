@@ -7,6 +7,8 @@ import './style.less';
 import {selectorProfileData} from "../../../profile/selectors/profile.es";
 import {HelloTeacher} from "../../components/HelloTeacher";
 import CoursePreviewList from "src/course/components/CoursePreviewList";
+import {selectorCourseDataByList} from "src/course/selectors/course.es";
+import {selectorProfileCourses} from "src/profile/selectors/profile.es";
 
 /**
  * Привязка props к store
@@ -15,8 +17,9 @@ import CoursePreviewList from "src/course/components/CoursePreviewList";
  * @return {{prop}}
  */
 function mapStateToProps (state) {
+    const courseList = selectorProfileCourses(state);
     return {
-        courseList: selectorProfileData(state).courses,
+        courseData: selectorCourseDataByList(state, courseList),
         profile: selectorProfileData(state),
     };
 }
@@ -52,11 +55,12 @@ class Teacher extends React.Component {
      * Отображение компонента
      */
     render () {
-        const {courseList, profile} = this.props;
+        const {courseData, profile} = this.props;
+        console.log(courseData);
         return (
             <div className={this.block.mix('center-block')()}>
                 {
-                    courseList && courseList.length ? <CoursePreviewList posterLink="/teaching/courses" profile={profile} courseList={courseList}/> : <HelloTeacher/>
+                    courseData && Object.keys(courseData).length ? <CoursePreviewList posterLink="/teaching/courses" profile={profile} courseData={courseData}/> : <HelloTeacher/>
                 }
             </div>
         )

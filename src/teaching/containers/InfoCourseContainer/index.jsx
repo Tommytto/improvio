@@ -1,15 +1,12 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {Button, Form, FormGroup, Input, Label} from "reactstrap";
-import {createCourse, updateCourse} from "../../actions/teaching.es";
 import {selectorProfileId} from "../../../profile/selectors/profile.es";
 import {selectorCourse} from "../../../course/selectors/course.es";
-import {getCourse} from "../../../course/actions/course.es";
+import {updateCourse, getCourse} from "src/course/actions/course.es";
 
-// import {exampleSimple, exampleGet, exampleCreate, exampleUpdate, exampleDelete} from 'src/redux/actions/example';
 
 /**
  * Привязка props к store
@@ -88,8 +85,10 @@ class InfoCourse extends React.Component {
     };
 
     async componentDidMount() {
-        const {getCourse, courseId} = this.props;
-        await getCourse(courseId);
+        const {getCourse, courseId, courseInfo} = this.props;
+        if (!courseInfo) {
+            await getCourse(courseId);
+        }
         const {name, poster, level, description} = this.props.courseInfo;
         this.setState({
             name,
@@ -97,7 +96,6 @@ class InfoCourse extends React.Component {
             level: level || '0',
             description: description || '',
         });
-        console.log(this.props.courseInfo);
     }
 
     render() {

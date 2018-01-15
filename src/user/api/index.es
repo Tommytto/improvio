@@ -1,7 +1,11 @@
-import Auth from './Auth';
+import BaseApi from "src/common/api/BaseApi.es";
 
-export default class Api {
-    constructor (base = '') {
-        this.Auth = new Auth(base);
+class Api extends BaseApi{
+    getUser(userId) {
+        return this.request(`/api/users/${userId}`, 'GET');
     }
 }
+
+export {
+    Api,
+};

@@ -13,4 +13,3 @@ export * from './components/Header';
 export * from './components/Footer';
 
 //Selectors
-export * from './selectors/course-list.es';
