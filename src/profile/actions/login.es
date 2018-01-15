@@ -10,12 +10,15 @@ const login = (formData) => async (dispatch, getState, {ProfileApi}) => {
         if (data.error) {
             throw data.error;
         }
-        putInStorage('id', data.id);
-        putInStorage('email', data.email);
-        putInStorage('password', data.password);
-        const normData = schemeProfile(data);
-        dispatch({type: ProfileActionTypes.SET_PROFILE_SUCCESS, payload: normData});
-        dispatch({type: LoginActionTypes.LOGIN_SUCCESS});
+        if (data && data.email && data.password) {
+            putInStorage('id', data.id);
+            putInStorage('email', data.email);
+            putInStorage('password', data.password);
+            const normData = schemeProfile(data);
+            dispatch({type: ProfileActionTypes.SET_PROFILE_SUCCESS, payload: normData});
+            dispatch({type: LoginActionTypes.LOGIN_SUCCESS});
+        }
+
     } catch (err) {
         console.error(err);
     }
