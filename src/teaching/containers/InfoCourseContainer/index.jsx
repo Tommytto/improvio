@@ -6,7 +6,8 @@ import {Button, Form, FormGroup, Input, Label} from "reactstrap";
 import {selectorProfileId} from "../../../profile/selectors/profile.es";
 import {selectorCourse} from "../../../course/selectors/course.es";
 import {updateCourse, getCourse} from "src/course/actions/course.es";
-
+import './style.less';
+import bemCn from 'bem-cn';
 
 /**
  * Привязка props к store
@@ -50,7 +51,7 @@ class InfoCourse extends React.Component {
     }
 
     initBem() {
-
+        this.block = bemCn('info-editor');
     }
 
     getFormData() {
@@ -70,16 +71,16 @@ class InfoCourse extends React.Component {
                 isChanged: true,
             });
         }
-        // if ('file' === target.type) {
-        //     console.log(target.files[0]);
-        //     this.setState({
-        //         [target.name]: target.files[0],
-        //     });
-        // } else {
+        if ('file' === target.type) {
+            console.log(target.files[0]);
+            this.setState({
+                [target.name]: target.files[0],
+            });
+        } else {
             this.setState({
                 [target.name]: target.value,
             });
-        // }
+        }
     };
 
     onSubmit = async (event, data) => {
@@ -114,15 +115,11 @@ class InfoCourse extends React.Component {
                            onChange={this.changeInputData} id="course-name" placeholder="Введите название компании"/>
                 </FormGroup>
                 <FormGroup>
-                    <Label for="poster">Главное изображение курса</Label>
-                    <Input type="text" name="poster" value={this.state.poster} onChange={this.changeInputData}
+                    <Label className="w-100" for="poster">Главное изображение курса</Label>
+                    <img className={this.block('poster-preview').mix('m-b-10')()} src={this.state.poster}/>
+                    <Input type="file" name="poster" onChange={this.changeInputData}
                            id="course-poster" placeholder="Добавьте ссылку на изображение"/>
                 </FormGroup>
-                {/*<FormGroup>*/}
-                    {/*<Label for="poster">Главное изображение курса</Label>*/}
-                    {/*<Input type="file" name="poster" onChange={this.changeInputData}*/}
-                           {/*id="course-poster" placeholder="Добавьте ссылку на изображение"/>*/}
-                {/*</FormGroup>*/}
                 <FormGroup>
                     <Label for="level">Сложность курса</Label>
                     <Input type="select" name="level" value={this.state.level} onChange={this.changeInputData}

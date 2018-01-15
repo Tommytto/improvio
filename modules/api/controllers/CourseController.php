@@ -12,18 +12,18 @@ class CourseController extends ActiveController
 {
     public $modelClass = 'app\modules\api\models\Course';
 
-//    /**
-//     * @inheritdoc
-//     */
-//    public function actions()
-//    {
-//        $actions = parent::actions();
-//        $actions['update'] = [
-//            'class' => UpdateCourceAction::className(),
-//            'modelClass' => $this->modelClass,
-//            'checkAccess' => [$this, 'checkAccess'],
-//            'scenario' => $this->updateScenario,
-//        ];
-//        return $actions;
-//    }
+    /**
+     * @inheritdoc
+     */
+    public function actions()
+    {
+        $actions = parent::actions();
+        $actions['update'] = [
+            'class' => UpdateCourceAction::className(),
+            'modelClass' => $this->modelClass,
+            'checkAccess' => [$this, 'checkAccess'],
+            'scenario' => $this->updateScenario,
+        ];
+        return $actions;
+    }
 }

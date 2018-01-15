@@ -7,10 +7,12 @@
 
 namespace app\modules\api\actions;
 
+use app\modules\api\models\UploadForm;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\rest\UpdateAction;
 use yii\web\ServerErrorHttpException;
+use yii\web\UploadedFile;
 
 /**
  * CreateAction implements the API endpoint for creating a new model from the given data.
@@ -30,18 +32,20 @@ class UpdateCourceAction extends UpdateAction
      */
     public function run($id)
     {
-//        print_r(Yii::$app->request->post());
-//        die();
-        return ['ololo' => 'Timur'];
+        $fileModel = new UploadForm();
+        $fileModel->fileImage = UploadedFile::getInstanceByName('poster');
+        $fileModel->upload();
         /* @var $model ActiveRecord */
+
         $model = $this->findModel($id);
 
         if ($this->checkAccess) {
             call_user_func($this->checkAccess, $this->id, $model);
         }
-
+        $data = Yii::$app->getRequest()->getBodyParams();
+        $data['poster'] = $fileModel->filePath;
         $model->scenario = $this->scenario;
-        $model->load(Yii::$app->getRequest()->getBodyParams(), '');
+        $model->load($data, '');
         if ($model->save() === false && !$model->hasErrors()) {
             throw new ServerErrorHttpException('Failed to update the object for unknown reason.');
         }
