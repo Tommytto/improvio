@@ -5,6 +5,7 @@ import bemCn from 'bem-cn';
 import './style.less';
 import {selectorCourseData} from "src/course/selectors/course.es";
 import CoursePreviewList from "src/course/components/CoursePreviewList";
+import {CoursePreviewListContainer} from "src/course/containers/CoursePreviewListContainer";
 
 /**
  * Привязка props к store
@@ -40,7 +41,6 @@ class UserMain extends React.Component {
     }
 
     render() {
-        console.log("here");
         return (
             <div className={this.block.mix('center-block clearfix')()}>
                 {this.renderCourseData()}
@@ -50,12 +50,11 @@ class UserMain extends React.Component {
 
     renderCourseData() {
         const {courseData} = this.props;
-        console.log(courseData);
         if (courseData && Object.keys(courseData).length) {
             return (
                 <Fragment>
                     <h3 className="m-b-20">Все курсы</h3>
-                    <CoursePreviewList courseData={courseData}/>
+                    <CoursePreviewListContainer courseData={courseData}/>
                 </Fragment>
             )
         }

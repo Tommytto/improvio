@@ -23,7 +23,7 @@ const getCourseList = () => async (dispatch, getState, {CourseApi}) => {
         dispatch({type: ActionTypes.GET_COURSE_LIST_SUCCESS, payload: normData});
     } catch (error) {
         dispatch({type: ActionTypes.GET_COURSE_LIST_FAIL});
-        console.log(error);
+        console.error(error);
     }
 
 };

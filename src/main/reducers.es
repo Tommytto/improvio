@@ -36,7 +36,9 @@ const appReducer = combineReducers({
 const storeReducers = (state, action) => {
     if (action.type === ActionTypes.CLEAR_STORE) {
         Object.keys(state).forEach((key) => {
-            state[key] = undefined;
+            if (key === PROFILE_MODULE_NAME) {
+                state[key] = undefined;
+            }
         });
     }
     return appReducer(state, action);

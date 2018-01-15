@@ -17,7 +17,7 @@ const login = (formData) => async (dispatch, getState, {ProfileApi}) => {
         dispatch({type: ProfileActionTypes.SET_PROFILE_SUCCESS, payload: normData});
         dispatch({type: LoginActionTypes.LOGIN_SUCCESS});
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 
 };

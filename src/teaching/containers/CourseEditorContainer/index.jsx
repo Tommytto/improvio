@@ -67,7 +67,6 @@ class CourseEditor extends React.Component {
      * Отображение компонента
      */
     render() {
-        console.log(this.state.activeTab);
         return (
             <div className={this.block.mix('center-block')()}>
                 <Row>

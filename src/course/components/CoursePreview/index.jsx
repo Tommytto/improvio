@@ -46,7 +46,6 @@ class CoursePreview extends React.Component {
     renderPoster() {
         const {course, link} = this.props;
         if (link) {
-            console.log("here");
             return (
                 <Link to={`${link}/${course.id}`}>
                     <div className={this.bemPosterWrapper()} style={{backgroundImage: `url(${course.poster})`}}/>

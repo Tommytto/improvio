@@ -9,6 +9,7 @@ import {Header as CommonHeader} from 'src/common/index.es';
 import {selectorProfileData} from "../../selectors/profile.es";
 import {logout} from "../../actions/login.es";
 import {Link} from "react-router-dom";
+import {withRouter} from "react-router";
 
 /**
  * Привязка props к store
@@ -55,8 +56,7 @@ class ProfileHeader extends Component {
         return (
             <CommonHeader>
                 <div className="m-r-20">
-                    <Button tag={Link} to="/teaching/course-creating" className="m-r-40" color="primary">Создать курс</Button>
-                    <Button tag={Link} to="/teaching" className="m-r-40" color="primary">Преподавательская</Button>
+                    {this.renderTeacherButtons()}
                     <span className='oi oi-person m-r-10'/>
                     <span>{profile.lastName}</span>
                     &nbsp;
@@ -66,9 +66,17 @@ class ProfileHeader extends Component {
             </CommonHeader>
         )
     }
+
+    renderTeacherButtons() {
+        const {location} = this.props;
+        if ("/teaching" === location.pathname) {
+            return <Button tag={Link} to="/teaching/course-creating" className="m-r-40" color="primary">Создать курс</Button>
+        }
+        return <Button tag={Link} to="/teaching" className="m-r-40" color="primary">Преподавательская</Button>
+    }
 }
 
-const ProfileHeaderContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileHeader);
+const ProfileHeaderContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfileHeader));
 export {
     ProfileHeaderContainer,
 };

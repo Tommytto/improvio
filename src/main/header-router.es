@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, HashRouter, Route, Switch} from 'react-router-dom';
+import {HashRouter, Router, Switch} from 'react-router-dom';
 import {PrivateRoute} from "../profile/containers/PrivateRouteContainer";
 import HeaderContainer from "../guest/containers/HeaderContainer";
 import {ProfileHeaderContainer} from "../profile/containers/ProfileHeaderContainer";
@@ -7,8 +7,7 @@ import {ProfileHeaderContainer} from "../profile/containers/ProfileHeaderContain
 const HeaderRouter = () => {
     return <HashRouter>
         <Switch>
-            <PrivateRoute path="/" component={ProfileHeaderContainer} guestComponent={HeaderContainer}/>
-            <Route component={() => "error page"} />
+            <PrivateRoute component={ProfileHeaderContainer} guestComponent={HeaderContainer}/>
         </Switch>
     </HashRouter>;
 };

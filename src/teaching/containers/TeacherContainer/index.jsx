@@ -6,9 +6,9 @@ import bemCn from 'bem-cn';
 import './style.less';
 import {selectorProfileData} from "../../../profile/selectors/profile.es";
 import {HelloTeacher} from "../../components/HelloTeacher";
-import CoursePreviewList from "src/course/components/CoursePreviewList";
 import {selectorCourseDataByList} from "src/course/selectors/course.es";
 import {selectorProfileCourses} from "src/profile/selectors/profile.es";
+import {CoursePreviewListContainer} from "src/course/containers/CoursePreviewListContainer";
 
 /**
  * Привязка props к store
@@ -56,11 +56,11 @@ class Teacher extends React.Component {
      */
     render () {
         const {courseData, profile} = this.props;
-        console.log(courseData);
         return (
             <div className={this.block.mix('center-block')()}>
+                <h3 className="m-b-20">Ваши курсы:</h3>
                 {
-                    courseData && Object.keys(courseData).length ? <CoursePreviewList posterLink="/teaching/courses" profile={profile} courseData={courseData}/> : <HelloTeacher/>
+                    courseData && Object.keys(courseData).length ? <CoursePreviewListContainer posterLink="/teaching/courses" profile={profile} courseData={courseData}/> : <HelloTeacher/>
                 }
             </div>
         )

@@ -39,12 +39,12 @@ function mapDispatchToProps(dispatch) {
 class InfoCourse extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props);
         this.state = {
             name: '',
             poster: '',
             level: '0',
             description: '',
+            isChanged: false,
         };
         this.initBem();
     }
@@ -65,6 +65,11 @@ class InfoCourse extends React.Component {
 
     changeInputData = (event) => {
         const target = event.currentTarget;
+        if (!this.state.isChanged) {
+            this.setState({
+                isChanged: true,
+            });
+        }
         // if ('file' === target.type) {
         //     console.log(target.files[0]);
         //     this.setState({
@@ -77,11 +82,13 @@ class InfoCourse extends React.Component {
         // }
     };
 
-    onSubmit = (event, data) => {
+    onSubmit = async (event, data) => {
         event.preventDefault();
         const {updateCourse, match} = this.props;
-        console.log(data);
-        updateCourse(data, match.params.courseId);
+        await updateCourse(data, match.params.courseId);
+        this.setState({
+            isChanged: false,
+        })
     };
 
     async componentDidMount() {
@@ -131,7 +138,7 @@ class InfoCourse extends React.Component {
                            onChange={this.changeInputData}
                            id="course-description" placeholder="Введите ваше описание в нескольких предложениях"/>
                 </FormGroup>
-                <Button className="float-right" size="lg" color='success' type="submit">
+                <Button className="float-right" disabled={!this.state.isChanged} size="lg" color='success' type="submit">
                     Подтвердить
                 </Button>
             </Form>

@@ -57,7 +57,6 @@ class CourseCreator extends React.Component {
     onClickCreate = async () => {
         const {history, profileId, createCourse} = this.props;
         const name = this.state.name;
-        console.log(name);
         const courseId = await createCourse({name, author: profileId});
         history.push(`/teaching/courses/${courseId}`);
     };

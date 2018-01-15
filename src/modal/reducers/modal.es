@@ -5,7 +5,6 @@ const initialState = {};
 const modal = (state = initialState, {type, payload}) => {
     switch (type) {
         case ActionTypes.OPEN_MODAL:
-            console.log('reducer');
             return {
                 ...state,
                 [payload]: true,
