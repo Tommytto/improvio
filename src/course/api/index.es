@@ -14,7 +14,11 @@ class Api extends BaseApi {
     }
 
     updateCourse(data, courseId) {
-        return this.request(`/api/courses/${courseId}`, 'PATCH', data, true);
+        return this.request(`/api/courses/${courseId}`, 'PATCH', data);
+    }
+
+    updatePoster(data, courseId) {
+        return this.request(`/api/courses/${courseId}/poster`, 'POST', data, true);
     }
 
 }

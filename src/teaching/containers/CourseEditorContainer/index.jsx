@@ -28,11 +28,6 @@ function mapStateToProps(state) {
  */
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        // exampleSimple,
-        // exampleGet,
-        // exampleCreate,
-        // exampleUpdate,
-        // exampleDelete,
     }, dispatch);
 }
 
@@ -68,31 +63,33 @@ class CourseEditor extends React.Component {
      */
     render() {
         return (
-            <div className={this.block.mix('center-block')()}>
-                <Row>
-                    <div className="col-3">
-                        <Nav vertical pills>
-                            {this.renderNavLinks()}
-                        </Nav>
-                    </div>
-                    <TabContent className="col-9" activeTab={this.state.activeTab}>
-                        <TabPane tabId={0}>
-                            <InfoCourseContainer/>
-                        </TabPane>
-                        <TabPane tabId={1}>
-                            <Row>
-                                <Col sm="6">
-                                    <Card body>
-                                        <CardTitle>Special Title Treatment</CardTitle>
-                                        <CardText>With supporting text below as a natural lead-in to additional
-                                            content.</CardText>
-                                        <Button>Go somewhere</Button>
-                                    </Card>
-                                </Col>
-                            </Row>
-                        </TabPane>
-                    </TabContent>
-                </Row>
+            <div className={this.block.mix('center-block h-100')()}>
+                <div className="white-box h-100">
+                    <Row>
+                        <div className="col-3">
+                            <Nav vertical pills>
+                                {this.renderNavLinks()}
+                            </Nav>
+                        </div>
+                        <TabContent className="col-9" activeTab={this.state.activeTab}>
+                            <TabPane tabId={0}>
+                                <InfoCourseContainer/>
+                            </TabPane>
+                            <TabPane tabId={1}>
+                                <Row>
+                                    <Col sm="6">
+                                        <Card body>
+                                            <CardTitle>Special Title Treatment</CardTitle>
+                                            <CardText>With supporting text below as a natural lead-in to additional
+                                                content.</CardText>
+                                            <Button>Go somewhere</Button>
+                                        </Card>
+                                    </Col>
+                                </Row>
+                            </TabPane>
+                        </TabContent>
+                    </Row>
+                </div>
             </div>
         )
     }

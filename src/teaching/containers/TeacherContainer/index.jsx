@@ -32,11 +32,6 @@ function mapStateToProps (state) {
  */
 function mapDispatchToProps (dispatch) {
     return bindActionCreators({
-        // exampleSimple,
-        // exampleGet,
-        // exampleCreate,
-        // exampleUpdate,
-        // exampleDelete,
     }, dispatch);
 }
 
@@ -57,15 +52,22 @@ class Teacher extends React.Component {
     render () {
         const {courseData, profile} = this.props;
         return (
-            <div className={this.block.mix('center-block')()}>
-                <h3 className="m-b-20">Ваши курсы:</h3>
-                {
-                    courseData && Object.keys(courseData).length ? <CoursePreviewListContainer posterLink="/teaching/courses" profile={profile} courseData={courseData}/> : <HelloTeacher/>
-                }
+            <div className="center-block h-100">
+                <div className={this.block.mix('white-box h-100')()}>
+                    {this.renderCourseList()}
+                </div>
             </div>
         )
     }
 
+    renderCourseList() {
+        const {courseData, profile} = this.props;
+        if (courseData && Object.keys(courseData).length) {
+            return <CoursePreviewListContainer title="Ваши курсы" posterLink="/teaching/courses" profile={profile} courseData={courseData}/>;
+        }
+        return <HelloTeacher/>
+
+    }
 }
 
 const TeacherContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Teacher));

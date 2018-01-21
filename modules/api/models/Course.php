@@ -47,15 +47,15 @@ class Course extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => 'Username',
-            'poster' => 'Username',
-            'level' => 'Auth Key',
-            'time' => 'Password Hash',
-            'lectureCount' => 'Email',
-            'price' => 'Email',
-            'datePublish' => 'Email',
-            'author' => 'Email',
-            'description' => 'Email',
+            'name' => 'Course name',
+            'poster' => 'Course poster',
+            'level' => 'Course level',
+            'time' => 'Course time',
+            'lectureCount' => 'Course lecture count',
+            'price' => 'Course price',
+            'datePublish' => 'Course date publish',
+            'author' => 'Course author',
+            'description' => 'Course description',
         ];
     }
 }

@@ -9,16 +9,22 @@ class Header extends React.Component {
         this.initBem();
     }
 
+    static defaultProps = {
+        className: '',
+    };
+
     initBem() {
         this.block = bemCn('header');
     }
 
     render () {
-        const {bemWrapper, children} = this.props;
+        const {className, children} = this.props;
 
         return (
-            <header className={bemWrapper ? this.block.mix(bemWrapper(this.block()))() : this.block()}>
-                <Link to="/"><span className="m-l-20">I M P </span></Link>
+            <header className={this.block.mix(className)()}>
+                <Link to="/">
+                    <span>IMPROVIO</span>
+                </Link>
                 {children}
             </header>
         );

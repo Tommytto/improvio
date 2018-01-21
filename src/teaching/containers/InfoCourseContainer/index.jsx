@@ -8,6 +8,7 @@ import {selectorCourse} from "../../../course/selectors/course.es";
 import {updateCourse, getCourse} from "src/course/actions/course.es";
 import './style.less';
 import bemCn from 'bem-cn';
+import {updatePoster} from "../../../course/actions/course.es";
 
 /**
  * Привязка props к store
@@ -33,6 +34,7 @@ function mapStateToProps(state, props) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         updateCourse,
+        updatePoster,
         getCourse,
     }, dispatch);
 }
@@ -42,7 +44,6 @@ class InfoCourse extends React.Component {
         super(props);
         this.state = {
             name: '',
-            poster: '',
             level: '0',
             description: '',
             isChanged: false,
@@ -55,10 +56,9 @@ class InfoCourse extends React.Component {
     }
 
     getFormData() {
-        const {name, poster, level, description} = this.state;
+        const {name, level, description} = this.state;
         return {
             name,
-            poster,
             level,
             description,
         }
@@ -71,16 +71,9 @@ class InfoCourse extends React.Component {
                 isChanged: true,
             });
         }
-        if ('file' === target.type) {
-            console.log(target.files[0]);
-            this.setState({
-                [target.name]: target.files[0],
-            });
-        } else {
-            this.setState({
-                [target.name]: target.value,
-            });
-        }
+        this.setState({
+            [target.name]: target.value,
+        });
     };
 
     onSubmit = async (event, data) => {
@@ -97,16 +90,25 @@ class InfoCourse extends React.Component {
         if (!courseInfo) {
             await getCourse(courseId);
         }
-        const {name, poster, level, description} = this.props.courseInfo;
+        const {name, level, description} = this.props.courseInfo;
         this.setState({
             name,
-            poster: poster || '',
             level: level || '0',
             description: description || '',
         });
     }
 
+    onChangePoster = (event) => {
+        const {updatePoster, match} = this.props;
+        const target = event.currentTarget;
+        updatePoster({
+            [target.name]: target.files[0],
+        }, match.params.courseId);
+    };
+
     render() {
+        const {courseInfo} = this.props;
+
         return (
             <Form onSubmit={(event) => this.onSubmit(event, this.getFormData())}>
                 <FormGroup>
@@ -116,8 +118,8 @@ class InfoCourse extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label className="w-100" for="poster">Главное изображение курса</Label>
-                    <img className={this.block('poster-preview').mix('m-b-10')()} src={this.state.poster}/>
-                    <Input type="file" name="poster" onChange={this.changeInputData}
+                    <img className={this.block('poster-preview').mix('m-b-10')()} src={courseInfo ? courseInfo.poster : ''}/>
+                    <Input type="file" name="poster" onChange={this.onChangePoster}
                            id="course-poster" placeholder="Добавьте ссылку на изображение"/>
                 </FormGroup>
                 <FormGroup>

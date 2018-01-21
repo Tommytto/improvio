@@ -54,20 +54,28 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                [
-                    'class' => 'yii\rest\UrlRule',
-                    'controller' => [
-                        'api/user',
-                        'api/course',
-                    ],
-                ],
-                [
-                    'class' => 'yii\rest\UrlRule',
-                    'pluralize' => false,
-                    'controller' => [
-                        'api/auth',
-                    ],
-                ],
+//                [
+//                    'class' => 'yii\rest\UrlRule',
+//                    'controller' => [
+//                        'api/user',
+//                        'api/course',
+//                    ],
+//                ],
+//                'api/course/poster' => 'api/course',
+//                [
+//                    'class' => 'yii\rest\UrlRule',
+//                    'pluralize' => false,
+//                    'controller' => [
+//                        'api/auth',
+//                    ],
+//                ],
+                'POST api/<controller:[\w-]+>s' => 'api/<controller>/create',
+                'api/<controller:[\w-]+>s' => 'api/<controller>/index',
+                'PATCH api/<controller:[\w-]+>s/<id:\d+>'    => 'api/<controller>/update',
+                'DELETE api/<controller:[\w-]+>/<id:\d+>' => 'api/<controller>/delete',
+                'api/<controller:\w+>s/<id:\d+>' => 'api/<controller>/view',
+
+                'POST api/<controller:\w+>s/<id:\d+>/<action>' => 'api/<controller>/<action>'
             ],
         ],
     ],

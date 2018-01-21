@@ -1,0 +1,25 @@
+.profile-card {
+    &__toggle {
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        align-items: center;
+        color: rgba(0,0,0,.7);
+        &:hover {
+            color: rgba(0,0,0,.5);
+        }
+    }
+    &__info {
+        display: none;
+        position: absolute;
+        min-width: 200px;
+        z-index: 100;
+        border: 1px solid hsla(210,8%,51%,.13);
+        right: 0;
+        top: 65px;
+        &_open {
+            display: block;
+        }
+    }
+
+}

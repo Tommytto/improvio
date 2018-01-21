@@ -2,7 +2,8 @@
 
 namespace app\modules\api\controllers;
 
-use app\modules\api\actions\UpdateCourceAction;
+use app\modules\api\actions\PosterCourceAction;
+use app\modules\api\actions\CreateCourseAction;
 use yii\rest\ActiveController;
 
 /**
@@ -18,8 +19,14 @@ class CourseController extends ActiveController
     public function actions()
     {
         $actions = parent::actions();
-        $actions['update'] = [
-            'class' => UpdateCourceAction::className(),
+        $actions['poster'] = [
+            'class' => PosterCourceAction::className(),
+            'modelClass' => $this->modelClass,
+            'checkAccess' => [$this, 'checkAccess'],
+            'scenario' => $this->updateScenario,
+        ];
+        $actions['create'] = [
+            'class' => CreateCourseAction::className(),
             'modelClass' => $this->modelClass,
             'checkAccess' => [$this, 'checkAccess'],
             'scenario' => $this->updateScenario,

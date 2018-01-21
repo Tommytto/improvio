@@ -25,7 +25,7 @@ class CoursePreview extends React.Component {
     render () {
         const {bemWrapper, course} = this.props;
         return (
-            <div className={bemWrapper ? block.mix(bemWrapper(block())) : block()}>
+            <div className={block()}>
                 {this.renderPoster()}
                 <div className={this.bemContent()}>
                     <header className={this.bemHeader()}>

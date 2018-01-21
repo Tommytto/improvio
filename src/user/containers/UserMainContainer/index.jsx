@@ -52,10 +52,9 @@ class UserMain extends React.Component {
         const {courseData} = this.props;
         if (courseData && Object.keys(courseData).length) {
             return (
-                <Fragment>
-                    <h3 className="m-b-20">Все курсы</h3>
-                    <CoursePreviewListContainer courseData={courseData}/>
-                </Fragment>
+                <div className={this.block.mix("white-box")()}>
+                    <CoursePreviewListContainer title="Все курсы" courseData={courseData}/>
+                </div>
             )
         }
         return <h3>Извините курсов еще нет, скорее регистрируйтесь и станьте первым преподавателем</h3>

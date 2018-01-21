@@ -27,8 +27,15 @@ class CoursePreviewList extends React.Component {
     }
 
     render() {
-        const {courseData, posterLink} = this.props;
-        return Object.keys(courseData).map((courseId) => <CoursePreviewContainer key={courseId} course={courseData[courseId]} link={posterLink}/>)
+        const {courseData, posterLink, title} = this.props;
+        return (
+            <section className={this.block()}>
+                <h3 className={this.block('title').mix("m-b-20")()}>{title}</h3>
+                {
+                    Object.keys(courseData).map((courseId) => <CoursePreviewContainer key={courseId} course={courseData[courseId]} link={posterLink}/>)
+                }
+            </section>
+        );
     }
 }
 

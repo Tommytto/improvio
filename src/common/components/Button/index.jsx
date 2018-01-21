@@ -1,7 +1,6 @@
 import React from 'react';
 import bemCn from 'bem-cn';
-
-import './style.less'
+import {Button as BootstrapButton} from 'reactstrap';
 
 class Button extends React.Component {
     constructor() {
@@ -14,17 +13,10 @@ class Button extends React.Component {
     }
 
     render () {
-        const {bemWrapper, onClick, type} = this.props;
-
-        const btnProps = {
-            type,
-            onClick,
-            className: bemWrapper ? this.block.mix(bemWrapper(this.block()))() : this.block(),
-        };
         return (
-            <button {...btnProps}>
+            <BootstrapButton {...this.props}>
                 {this.props.children}
-            </button>
+            </BootstrapButton>
         );
     }
 

@@ -2,12 +2,12 @@ import React from 'react';
 import {HashRouter, Router, Switch} from 'react-router-dom';
 import {PrivateRoute} from "../profile/containers/PrivateRouteContainer";
 import HeaderContainer from "../guest/containers/HeaderContainer";
-import {ProfileHeaderContainer} from "../profile/containers/ProfileHeaderContainer";
+import {UserHeaderContainer} from "user/containers/UserHeaderContainer";
 
 const HeaderRouter = () => {
     return <HashRouter>
         <Switch>
-            <PrivateRoute component={ProfileHeaderContainer} guestComponent={HeaderContainer}/>
+            <PrivateRoute component={UserHeaderContainer} guestComponent={HeaderContainer}/>
         </Switch>
     </HashRouter>;
 };

@@ -1,5 +1,6 @@
 import {schemeCourse, schemeCourseList} from "src/course/scheme/course.es";
 import {ActionTypes} from "src/course/constants/course.es";
+import {ActionTypes as ProfileActionTypes} from "src/profile/constants/profile.es";
 
 const getCourse = (courseId) => async (dispatch, getState, {CourseApi}) => {
     dispatch({type: ActionTypes.GET_COURSE_START});
@@ -34,6 +35,7 @@ const createCourse = (courseData) => async (dispatch, getState, {CourseApi}) => 
         const {data} = await CourseApi.createCourse(courseData);
         const normData = schemeCourse(data);
         dispatch({type: ActionTypes.CREATE_COURSE_SUCCESS, payload: normData});
+        dispatch({type: ProfileActionTypes.ADD_PROFILE_COURSE, payload: normData.result});
         return data.id
     } catch (error) {
         dispatch({type: ActionTypes.CREATE_COURSE_FAIL});
@@ -53,9 +55,22 @@ const updateCourse = (courseData, courseId) => async (dispatch, getState, {Cours
     }
 };
 
+const updatePoster = (poster, courseId) => async (dispatch, getState, {CourseApi}) => {
+    dispatch({type: ActionTypes.UPDATE_COURSE_POSTER_START});
+    try {
+        const {data} = await CourseApi.updatePoster(poster, courseId);
+        const normData = schemeCourse(data);
+        dispatch({type: ActionTypes.UPDATE_COURSE_POSTER_SUCCESS, payload: normData});
+    } catch (error) {
+        dispatch({type: ActionTypes.UPDATE_COURSE_POSTER_FAIL});
+        console.error(error);
+    }
+};
+
 export {
     getCourse,
     getCourseList,
     createCourse,
     updateCourse,
+    updatePoster,
 };

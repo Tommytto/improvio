@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import bemCn from 'bem-cn';
-import {Button} from 'reactstrap';
 
 import {openModal} from 'src/modal/index.es';
-import {Header as CommonHeader} from 'src/common/index.es';
 import {selectorProfileData} from "../../selectors/profile.es";
 import {logout} from "../../actions/login.es";
+import './style.less';
+import {Button} from "reactstrap";
 
 /**
  * Привязка props к store
@@ -43,6 +43,9 @@ class ProfileCard extends Component {
         this.initBem();
     }
 
+    initBem() {
+        this.block = bemCn('profile-card')
+    }
 
     componentWillUnmount() {
         window.removeEventListener('click', this.hideProfileInfo);
@@ -66,11 +69,29 @@ class ProfileCard extends Component {
         });
     };
 
-    render() {
-        const {children, shortName} = this.props;
-        return (
-            <div className={this.block({open: this.state.isProfileOpen})()}>
+    onClickExit = () => {
+        this.props.logout();
+    };
 
+    render() {
+        const {profile} = this.props;
+        return (
+            <div className={this.block()}>
+                <div className={this.block('toggle')()} onClick={this.profileClick}>
+                    <span className="m-r-10">
+                        {profile.firstName}
+                    </span>
+                    <span>
+                        <i className="far fa-user-circle fa-2x"/>
+                    </span>
+                </div>
+                <div className={this.block('info', {open: this.state.isProfileOpen}).mix('white-box')()}>
+                    <h4 className="m-b-0">{profile.lastName}</h4>
+                    <h4>{profile.firstName}</h4>
+                    <small className="text-muted">{profile.email}</small>
+                    <hr/>
+                    <Button block outline onClick={this.onClickExit} color="danger">Выйти</Button>
+                </div>
             </div>
         )
     }

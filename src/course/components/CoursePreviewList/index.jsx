@@ -1,7 +1,7 @@
 import React from 'react';
 import bemCn from 'bem-cn';
 
-import './style.less'
+// import './style.less'
 import CoursePreview from "../CoursePreview";
 
 

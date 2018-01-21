@@ -22,7 +22,7 @@ use yii\web\UploadedFile;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class UpdateCourceAction extends UpdateAction
+class PosterCourceAction extends UpdateAction
 {
     /**
      * Updates an existing model.

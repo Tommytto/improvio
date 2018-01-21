@@ -27,6 +27,7 @@ const course = (state = initialState, {type, payload}) => {
                 ...state,
                 isLoading: false,
             };
+
         case ActionTypes.UPDATE_COURSE_START:
             return {
                 ...state,
@@ -46,6 +47,7 @@ const course = (state = initialState, {type, payload}) => {
                 ...state,
                 isLoading: false,
             };
+
         case ActionTypes.CREATE_COURSE_START:
             return {
                 ...state,
@@ -69,6 +71,7 @@ const course = (state = initialState, {type, payload}) => {
                 ...state,
                 isLoading: false,
             };
+
         case ActionTypes.GET_COURSE_LIST_START:
             return {
                 ...state,
@@ -86,6 +89,29 @@ const course = (state = initialState, {type, payload}) => {
 
             };
         case ActionTypes.GET_COURSE_LIST_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+            };
+
+        case ActionTypes.UPDATE_COURSE_POSTER_START:
+            return {
+                ...state,
+                isLoading: true,
+            };
+        case ActionTypes.UPDATE_COURSE_POSTER_SUCCESS:
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    [payload.result]: {
+                        ...state.data[payload.result],
+                        poster: payload.entities.course[payload.result].poster,
+                    },
+                },
+                isLoading: false,
+            };
+        case ActionTypes.UPDATE_COURSE_POSTER_FAIL:
             return {
                 ...state,
                 isLoading: false,

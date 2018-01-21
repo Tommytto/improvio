@@ -2,12 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import bemCn from 'bem-cn';
-import {Button} from 'reactstrap';
 
 import {openModal} from 'src/modal/index.es';
 import {Header as CommonHeader} from 'src/common/index.es';
 import {ModalTypes} from '../../constants/config.es';
-import {Link} from "react-router-dom";
+import {Button} from "common/components/Button";
 
 /**
  * Привязка props к store
@@ -47,7 +46,7 @@ class Header extends Component {
 
         return (
             <CommonHeader>
-                <div className="m-r-20">
+                <div>
                     <Button className="m-r-10" outline color="primary" onClick={() => openModal(ModalTypes.LOGIN)}>Войти</Button>
                     <Button color="primary" onClick={() => openModal(ModalTypes.REGISTER)}>Зарегистрироваться</Button>
                 </div>

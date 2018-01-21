@@ -1,14 +1,12 @@
 import React from 'react';
 import bemCn from 'bem-cn';
 
-import './style.less'
 import {connect} from "react-redux";
 import {selectorUser} from "src/user/selectors/user.es";
 import {getUser} from "src/user/actions/user.es";
 import {bindActionCreators} from "redux";
 import CoursePreview from "src/course/components/CoursePreview";
 
-const block = bemCn('course-preview');
 
 /**
  * Привязка props к store

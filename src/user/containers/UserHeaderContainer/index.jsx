@@ -6,10 +6,11 @@ import {Button} from 'reactstrap';
 
 import {openModal} from 'src/modal/index.es';
 import {Header as CommonHeader} from 'src/common/index.es';
-import {selectorProfileData} from "../../selectors/profile.es";
-import {logout} from "../../actions/login.es";
+import {selectorProfileData} from "profile/selectors/profile.es";
+import {logout} from "profile/actions/login.es";
 import {Link} from "react-router-dom";
 import {withRouter} from "react-router";
+import {ProfileCardContainer} from "../../../profile/containers/ProfileCardContainer";
 
 /**
  * Привязка props к store
@@ -36,7 +37,7 @@ function mapDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-class ProfileHeader extends Component {
+class UserHeader extends Component {
     constructor() {
         super();
 
@@ -44,24 +45,16 @@ class ProfileHeader extends Component {
     }
 
     initBem() {
-        this.block = bemCn('profile-header');
+        this.block = bemCn('user-header');
     }
-
-    onClickExit = () => {
-        this.props.logout();
-    };
 
     render() {
         const {profile} = this.props;
         return (
             <CommonHeader>
-                <div className="m-r-20">
+                <div className="d-flex">
                     {this.renderTeacherButtons()}
-                    <span className='oi oi-person m-r-10'/>
-                    <span>{profile.lastName}</span>
-                    &nbsp;
-                    <span className="m-r-10">{profile.firstName}</span>
-                    <Button outline onClick={this.onClickExit} color="danger">Выйти</Button>
+                    <ProfileCardContainer/>
                 </div>
             </CommonHeader>
         )
@@ -76,7 +69,7 @@ class ProfileHeader extends Component {
     }
 }
 
-const ProfileHeaderContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfileHeader));
+const UserHeaderContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(UserHeader));
 export {
-    ProfileHeaderContainer,
+    UserHeaderContainer,
 };

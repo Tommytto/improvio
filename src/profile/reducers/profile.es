@@ -7,6 +7,7 @@ const initialState = {
     firstName: null,
     lastName: null,
     email: null,
+    courses: [],
     id: null,
 };
 
@@ -43,6 +44,14 @@ function profile(state = initialState, {type, payload}) {
             return {
                 ...state,
                 isLoading: false,
+            };
+        case ProfileActionTypes.ADD_PROFILE_COURSE:
+            return {
+                ...state,
+                courses: [
+                    ...state.courses,
+                    payload,
+                ]
             };
         default:
             return state;
