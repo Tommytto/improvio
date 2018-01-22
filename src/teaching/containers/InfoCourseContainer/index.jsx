@@ -118,7 +118,8 @@ class InfoCourse extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label className="w-100" for="poster">Главное изображение курса</Label>
-                    <img className={this.block('poster-preview').mix('m-b-10')()} src={courseInfo ? courseInfo.poster : ''}/>
+                    <img className={this.block('poster-preview').mix('m-b-10')()}
+                         src={courseInfo ? courseInfo.poster : ''}/>
                     <Input type="file" name="poster" onChange={this.onChangePoster}
                            id="course-poster" placeholder="Добавьте ссылку на изображение"/>
                 </FormGroup>
@@ -137,7 +138,8 @@ class InfoCourse extends React.Component {
                            onChange={this.changeInputData}
                            id="course-description" placeholder="Введите ваше описание в нескольких предложениях"/>
                 </FormGroup>
-                <Button className="float-right" disabled={!this.state.isChanged} size="lg" color='success' type="submit">
+                <Button className="float-right" disabled={!this.state.isChanged} size="lg" color='success'
+                        type="submit">
                     Подтвердить
                 </Button>
             </Form>

@@ -67,28 +67,26 @@ class CourseCreator extends React.Component {
     render() {
         return (
             <div className={this.block.mix('center-block')()}>
-                <div className="white-box">
-                    <div className="">
-                        <h1>Придумай название!</h1>
-                        <Input
-                            type="text"
-                            name="name"
-                            className="m-t-20"
-                            value={this.state.name}
-                            onChange={this.changeInputData}
-                            id="course-name"
-                            placeholder="Введите название курса"
-                        />
-                        <Button
-                            className="m-t-10"
-                            size="lg"
-                            block
-                            color="primary"
-                            onClick={this.onClickCreate}
-                        >
-                            Продолжить
-                        </Button>
-                    </div>
+                <div className="">
+                    <h1>Придумай название!</h1>
+                    <Input
+                        type="text"
+                        name="name"
+                        className="m-t-20"
+                        value={this.state.name}
+                        onChange={this.changeInputData}
+                        id="course-name"
+                        placeholder="Введите название курса"
+                    />
+                    <Button
+                        className="m-t-10"
+                        size="lg"
+                        block
+                        color="primary"
+                        onClick={this.onClickCreate}
+                    >
+                        Продолжить
+                    </Button>
                 </div>
             </div>
         )

@@ -52,7 +52,7 @@ class UserMain extends React.Component {
         const {courseData} = this.props;
         if (courseData && Object.keys(courseData).length) {
             return (
-                <div className={this.block.mix("white-box")()}>
+                <div className={this.block()}>
                     <CoursePreviewListContainer title="Все курсы" courseData={courseData}/>
                 </div>
             )

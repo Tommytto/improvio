@@ -53,9 +53,7 @@ class Teacher extends React.Component {
         const {courseData, profile} = this.props;
         return (
             <div className="center-block h-100">
-                <div className={this.block.mix('white-box h-100')()}>
-                    {this.renderCourseList()}
-                </div>
+                {this.renderCourseList()}
             </div>
         )
     }
