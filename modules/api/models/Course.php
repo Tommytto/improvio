@@ -25,7 +25,7 @@ class Course extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'courses';
+        return '{{courses}}';
     }
 
     /**

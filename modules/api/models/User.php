@@ -3,6 +3,8 @@
 namespace app\modules\api\models;
 
 use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "user".
@@ -17,14 +19,14 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  */
-class User extends \yii\db\ActiveRecord
+class User extends ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'user';
+        return '{{user}}';
     }
 
     /**
@@ -51,4 +53,5 @@ class User extends \yii\db\ActiveRecord
             'email' => 'Email',
         ];
     }
+
 }

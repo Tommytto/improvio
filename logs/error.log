@@ -1,0 +1,2 @@
+[Tue Jan 23 19:20:30.823986 2018] [core:alert] [pid 10076] [client 127.0.0.1:35656] /var/www/improvio/web/.htaccess: Invalid command 'RewriteEngine', perhaps misspelled or defined by a module not included in the server configuration
+[Tue Jan 23 19:20:30.923078 2018] [core:alert] [pid 10077] [client 127.0.0.1:35658] /var/www/improvio/web/.htaccess: Invalid command 'RewriteEngine', perhaps misspelled or defined by a module not included in the server configuration, referer: http://improvio/

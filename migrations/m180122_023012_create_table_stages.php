@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\api\models\Stage;
 use yii\db\Migration;
 
 /**
@@ -9,22 +10,22 @@ class m180122_023012_create_table_stages extends Migration
 {
 
     // Use up()/down() to run migration code without a transaction.
-    public function up()
+    public function safeUp()
     {
         $tableOptions = null;
 
         if ($this->db->driverName === 'mysql') { // Тип БД, далее тип таблицы и стандартная кодировка для этой таблицы.
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
-        $this->createTable('stages', [
-            'id' => $this->primaryKey(),
+        $this->createTable(Stage::tableName(), [
+            'id'       => $this->primaryKey(),
             'courseId' => $this->smallInteger()->notNull(),
-            'name' => $this->string(),
+            'name'     => $this->string(),
         ], $tableOptions);
     }
 
-    public function down()
+    public function safeDown()
     {
-        $this->dropTable('stages');
+        $this->dropTable(Stage::tableName());
     }
 }
