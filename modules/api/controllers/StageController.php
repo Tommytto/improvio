@@ -2,14 +2,12 @@
 
 namespace app\modules\api\controllers;
 
-use app\modules\api\models\Course;
 use app\modules\api\models\CourseStage;
 use app\modules\api\models\Stage;
-use app\modules\api\models\User;
 use Yii;
 use yii\base\Model;
 use yii\rest\ActiveController;
-use yii\web\Controller;
+use yii\rest\Controller;
 use yii\web\Response;
 
 /**
@@ -27,31 +25,29 @@ class StageController extends Controller
 
     public function actionCreate()
     {
-
         /* @var $model \yii\db\ActiveRecord */
-        $model = new Stage([
+        $model       = new Stage([
             'scenario' => $this->scenario,
         ]);
-        $data = Yii::$app->getRequest()->getBodyParams();
+        $data        = Yii::$app->getRequest()->getBodyParams();
         $transaction = Yii::$app->db->beginTransaction();
         $model->load($data, '');
         if ($model->save()) {
             $response = Yii::$app->getResponse();
             $response->setStatusCode(201);
-        } elseif (!$model->hasErrors()) {
+        } elseif (! $model->hasErrors()) {
             $transaction->rollBack();
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
-        $coursesStages = new CourseStage();
+        $coursesStages           = new CourseStage();
         $coursesStages->courseId = $data['courseId'];
-        $coursesStages->stageId = $model->id;
-        if (!$coursesStages->save()) {
+        $coursesStages->stageId  = $model->id;
+        if (! $coursesStages->save()) {
             $transaction->rollBack();
             throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
         }
         $transaction->commit();
-        print_r($model);
-        die();
+        Yii::$app->response->format = Response::FORMAT_JSON;
         return $model;
     }
 }
