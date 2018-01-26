@@ -30,13 +30,13 @@ class CourseStage extends ActiveRecord
             [
                 ['courseId'],
                 'exist',
-                'targetClass'     => Course::class,
+                'targetClass'     => Course::className(),
                 'targetAttribute' => 'id',
             ],
             [
                 ['stageId'],
                 'exist',
-                'targetClass'     => Stage::class,
+                'targetClass'     => Stage::className(),
                 'targetAttribute' => 'id',
             ],
 

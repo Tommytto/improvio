@@ -4,9 +4,9 @@ import {ActionTypes as ProfileActionTypes} from "../constants/profile.es";
 import {ActionTypes as CourseActionTypes} from "src/course/constants/course.es";
 import {schemeProfile} from "src/profile/scheme/profile.es";
 
-const login = (formData) => async (dispatch, getState, {ProfileApi}) => {
+const login = (formData) => async (dispatch, getState, {AuthApi}) => {
     try {
-        const {data} = await ProfileApi.auth(formData);
+        const {data} = await AuthApi.login(formData);
         if (data.error) {
             throw data.error;
         }

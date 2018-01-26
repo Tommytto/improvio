@@ -27,21 +27,18 @@ class AuthController extends Controller
 
     public function runAction($id, $params = [])
     {
-        print_r($this->getCourseComponent()->getUsersCourses(1));
-        die('-=-');
         $request = Yii::$app->request;
         if ($request->isPost) {
             $response         = Yii::$app->response;
             $response->format = Response::FORMAT_JSON;
             $model            = new User();
-            $courseModel      = new Course();
             $email            = $request->post()['email'];
             $password         = $request->post()['password'];
             $user             = $model::find()->where([
                 'email'    => $email,
                 'password' => $password,
             ])->one();
-            $courses          = $courseModel::find()->where(['author' => $user['id']])->all();
+            $courses          = $this->getCourseComponent()->getUsersCourses($user['id']);
             $courseList       = [];
             foreach ($courses as $course) {
                 array_push($courseList, $course['id']);

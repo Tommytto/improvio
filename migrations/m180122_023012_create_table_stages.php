@@ -19,7 +19,6 @@ class m180122_023012_create_table_stages extends Migration
         }
         $this->createTable(Stage::tableName(), [
             'id'       => $this->primaryKey(),
-            'courseId' => $this->smallInteger()->notNull(),
             'name'     => $this->string(),
         ], $tableOptions);
     }
