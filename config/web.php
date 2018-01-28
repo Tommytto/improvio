@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\api\components\CourseComponent;
+use app\modules\api\components\StageComponent;
 
 $params = require __DIR__ . '/params.php';
 $db     = require __DIR__ . '/db.php';
@@ -16,6 +17,9 @@ $config = [
     'components' => [
         'courseComponent' => [
             'class' => CourseComponent::class,
+        ],
+        'stageComponent' => [
+            'class' => StageComponent::class,
         ],
         'request'         => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -62,28 +66,13 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName'  => false,
             'rules'           => [
-//                [
-//                    'class' => 'yii\rest\UrlRule',
-//                    'controller' => [
-//                        'api/user',
-//                        'api/course',
-//                    ],
-//                ],
-//                'api/course/poster' => 'api/course',
-//                [
-//                    'class' => 'yii\rest\UrlRule',
-//                    'pluralize' => false,
-//                    'controller' => [
-//                        'api/auth',
-//                    ],
-//                ],
-'POST api/<controller:[\w-]+>s'           => 'api/<controller>/create',
-'api/<controller:[\w-]+>s'                => 'api/<controller>/index',
-'PATCH api/<controller:[\w-]+>s/<id:\d+>' => 'api/<controller>/update',
-'DELETE api/<controller:[\w-]+>/<id:\d+>' => 'api/<controller>/delete',
-'api/<controller:\w+>s/<id:\d+>'          => 'api/<controller>/view',
+                'POST api/<controller:[\w-]+>'            => 'api/<controller>/create',
+                'api/<controller:[\w-]+>'                 => 'api/<controller>/index',
+                'PATCH api/<controller:[\w-]+>/<id:\d+>'  => 'api/<controller>/update',
+                'DELETE api/<controller:[\w-]+>/<id:\d+>' => 'api/<controller>/delete',
+                'api/<controller:\w+>/<id:\d+>'           => 'api/<controller>/view',
 
-'POST api/<controller:\w+>s/<id:\d+>/<action>' => 'api/<controller>/<action>',
+                'POST api/<controller:\w+>/<id:\d+>/<action>' => 'api/<controller>/<action>',
             ],
         ],
     ],

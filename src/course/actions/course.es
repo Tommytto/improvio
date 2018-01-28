@@ -1,13 +1,16 @@
 import {schemeCourse, schemeCourseList} from "src/course/scheme/course.es";
 import {ActionTypes} from "src/course/constants/course.es";
 import {ActionTypes as ProfileActionTypes} from "src/profile/constants/profile.es";
+import {ActionTypes as StageActionTypes} from "src/course/constants/stage.es";
 
 const getCourse = (courseId) => async (dispatch, getState, {CourseApi}) => {
     dispatch({type: ActionTypes.GET_COURSE_START});
     try {
         const {data} = await CourseApi.getCourse(courseId);
         const normData = schemeCourse(data);
-        dispatch({type: ActionTypes.GET_COURSE_LIST_SUCCESS, payload: normData});
+
+        dispatch({type: ActionTypes.GET_COURSE_SUCCESS, payload: normData});
+        dispatch({type: StageActionTypes.SET_STAGE_LIST, payload: normData.entities.stageList});
 
     } catch (error) {
         dispatch({type: ActionTypes.GET_COURSE_FAIL});

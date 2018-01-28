@@ -1,30 +1,13 @@
+import {AuthApi, CourseApi, StageApi, UserApi} from "src/api/index.es";
+import {configureStore,} from 'src/common/index.es';
 import {storeReducers} from './reducers.es';
 
-import {
-    configureStore,
-} from 'src/common/index.es';
-
-import {
-    Api as ProfileApi,
-} from 'src/profile/api'
-
-import {
-    Api as TeachingApi,
-} from 'src/teaching/api/index.es';
-
-import {
-    Api as CourseApi
-} from 'src/course/index.es'
-
-import {
-    Api as UserApi
-} from 'src/user/api/index.es'
 
 const isProduction = process.env.NODE_ENV === 'production';
 const store = configureStore(!isProduction, storeReducers, {
-    'ProfileApi': new ProfileApi(),
-    'TeachingApi': new TeachingApi(),
+    'AuthApi': new AuthApi(),
     'CourseApi': new CourseApi(),
+    'StageApi': new StageApi(),
     'UserApi': new UserApi(),
 });
 

@@ -1,7 +1,8 @@
 import { normalize, schema } from 'normalizr';
 
 function schemeCourse(data) {
-    const courseList = new schema.Entity('course');
+    const stages = new schema.Entity('stageList');
+    const courseList = new schema.Entity('course', {stages: [stages]});
     return normalize(data, courseList);
 }
 

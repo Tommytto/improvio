@@ -8,13 +8,13 @@ use app\modules\api\queries\CourseQuery;
 use yii\base\Component;
 
 /**
- * This is the model class for table "user".
+ * Course component.
  */
 class CourseComponent extends Component
 {
     public function getUsersCourses($userId)
     {
-        $query = new CourseQuery(Course::class);
+        $query = new CourseQuery(Course::className());
         return $query->byUserId($userId)->all();
     }
 }

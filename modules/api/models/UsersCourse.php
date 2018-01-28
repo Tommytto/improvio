@@ -30,13 +30,13 @@ class UsersCourse extends ActiveRecord
             [
                 ['userId'],
                 'exist',
-                'targetClass'     => User::class,
+                'targetClass'     => User::className(),
                 'targetAttribute' => 'id',
             ],
             [
                 ['courseId'],
                 'exist',
-                'targetClass'     => Course::class,
+                'targetClass'     => Course::className(),
                 'targetAttribute' => 'id',
             ],
 

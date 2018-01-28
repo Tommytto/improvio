@@ -36,7 +36,6 @@ class Course extends ActiveRecord
         return [
             [['name', 'description', 'poster'], 'string'],
             [['isPublic'], 'boolean'],
-//            [['poster'], 'required'],
             [['author', 'level'], 'integer'],
         ];
     }

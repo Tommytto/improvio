@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import {Button, Card, CardText, CardTitle, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane} from "reactstrap";
 import bemCn from 'bem-cn';
 import './style.less';
+import {StageEditorContainer} from "teaching/containers/StageEditorContainer/index";
 import {InfoCourseContainer} from "../InfoCourseContainer";
 
 
@@ -76,16 +77,9 @@ class CourseEditor extends React.Component {
                             </div>
                         </TabPane>
                         <TabPane tabId={1}>
-                            <Row>
-                                <Col sm="6">
-                                    <Card body>
-                                        <CardTitle>Special Title Treatment</CardTitle>
-                                        <CardText>With supporting text below as a natural lead-in to additional
-                                            content.</CardText>
-                                        <Button>Go somewhere</Button>
-                                    </Card>
-                                </Col>
-                            </Row>
+                            <div className="white-box clearfix">
+                            <StageEditorContainer/>
+                        </div>
                         </TabPane>
                     </TabContent>
                 </Row>

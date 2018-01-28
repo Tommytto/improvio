@@ -33,7 +33,6 @@ class Stage extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['courseId'], 'required'],
             [['name'], 'string'],
         ];
     }
@@ -44,7 +43,6 @@ class Stage extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'courseId' => 'Course id',
             'name' => 'Stage name',
         ];
     }
