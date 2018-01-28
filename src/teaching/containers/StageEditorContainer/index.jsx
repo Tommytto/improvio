@@ -1,11 +1,17 @@
 import {Button} from "common/components/Button/index";
-import {createStage} from "course/actions/stage.es";
+import {createStage, getStage} from "course/actions/stage.es";
+import {Stage} from "course/components/Stage/index";
+import {selectorStageListByCourse} from "course/selectors/course.es";
+import {selectStageData, selectStageDataByList} from "course/selectors/stage.es";
+import {openModal} from "modal/actions/modal.es";
 import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import bemCn from 'bem-cn';
 import './style.less';
+import {MODAL_NAMES} from "teaching/constants/config.es";
+import {CreateStageModalContainer} from "teaching/containers/CreateStageModalContainer/index";
 
 
 /**
@@ -14,9 +20,12 @@ import './style.less';
  * @param state
  * @return {{prop}}
  */
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
+    const courseId = props.match.params.courseId;
+    const stageList = selectorStageListByCourse(state, courseId);
+
     return {
-        // example: state.example,
+        stageData: selectStageDataByList(state, stageList),
     };
 }
 
@@ -28,7 +37,8 @@ function mapStateToProps(state) {
  */
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        createStage,
+        openModal: () => openModal(MODAL_NAMES.CREATE_STAGE),
+        getStage,
     }, dispatch);
 }
 
@@ -53,18 +63,32 @@ class StageEditor extends React.Component {
         }
     }
 
+    componentDidMount() {
+        // this.props.getStage()
+    }
+
     /**
      * Отображение компонента
      */
     render() {
         return (
             <Fragment>
-                <div>Этапы курса</div>
-                <Button color="info" onClick={this.props.createStage}>
+                {this.renderStages()}
+                <Button outline color="primary" onClick={this.props.openModal}>
                     Добавить этап
                 </Button>
+                <CreateStageModalContainer/>
             </Fragment>
         )
+    }
+
+    renderStages() {
+        const {stageData} = this.props;
+        console.log(stageData);
+        if (!stageData) {
+            return null;
+        }
+        return Object.values(stageData).map((stage) => <Stage key={stage.id} stageName={stage.name}/>)
     }
 
 }

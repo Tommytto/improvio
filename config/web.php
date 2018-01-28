@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\api\components\CourseComponent;
+use app\modules\api\components\StageComponent;
 
 $params = require __DIR__ . '/params.php';
 $db     = require __DIR__ . '/db.php';
@@ -16,6 +17,9 @@ $config = [
     'components' => [
         'courseComponent' => [
             'class' => CourseComponent::class,
+        ],
+        'stageComponent' => [
+            'class' => StageComponent::class,
         ],
         'request'         => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation

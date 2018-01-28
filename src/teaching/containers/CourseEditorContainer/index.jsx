@@ -77,7 +77,9 @@ class CourseEditor extends React.Component {
                             </div>
                         </TabPane>
                         <TabPane tabId={1}>
+                            <div className="white-box clearfix">
                             <StageEditorContainer/>
+                        </div>
                         </TabPane>
                     </TabContent>
                 </Row>

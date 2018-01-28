@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {Button, Form, FormGroup, Input, Label} from "reactstrap";
 import {selectorProfileId} from "../../../profile/selectors/profile.es";
@@ -138,12 +138,26 @@ class InfoCourse extends React.Component {
                            onChange={this.changeInputData}
                            id="course-description" placeholder="Введите ваше описание в нескольких предложениях"/>
                 </FormGroup>
-                <Button className="float-right" disabled={!this.state.isChanged} size="lg" color='success'
+                {this.renderButton()}
+            </Form>
+        );
+    }
+
+    renderButton() {
+        if (this.state.isChanged) {
+            return (
+                <Button className="float-right" size="lg" color='success'
                         type="submit">
                     Подтвердить
                 </Button>
-            </Form>
-        );
+            )
+        }
+        // else return (
+        //     <Button tag={Link} to={} size="lg" color='success'
+        //             type="submit">
+        //         Подтвердить
+        //     </Button>
+        // )
     }
 }
 

@@ -2,6 +2,7 @@
 
 namespace app\modules\api\controllers;
 
+use app\modules\api\actions\GetCourseAction;
 use app\modules\api\actions\PosterCourceAction;
 use app\modules\api\actions\CreateCourseAction;
 use yii\rest\ActiveController;
@@ -30,6 +31,11 @@ class CourseController extends ActiveController
             'modelClass' => $this->modelClass,
             'checkAccess' => [$this, 'checkAccess'],
             'scenario' => $this->updateScenario,
+        ];
+        $actions['view'] = [
+            'class' => GetCourseAction::className(),
+            'modelClass' => $this->modelClass,
+            'checkAccess' => [$this, 'checkAccess'],
         ];
         return $actions;
     }

@@ -63,7 +63,6 @@ class ModalLogin extends Component {
                         </Button>
                     </ModalFooter>
                 </Form>
-
             </Modal>
         );
     }

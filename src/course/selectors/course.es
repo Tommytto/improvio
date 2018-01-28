@@ -16,6 +16,14 @@ function selectorCourse(state, courseId) {
     return selectorCourseData(state)[courseId];
 }
 
+function selectorStageListByCourse(state, courseId) {
+    const course = selectorCourse(state, courseId);
+    if (!course) {
+        return null;
+    }
+    return selectorCourse(state, courseId).stages;
+}
+
 function selectorCourseDataByList(state, courseList) {
     if (!courseList || !courseList.length) {
         return null;
@@ -34,4 +42,5 @@ export {
     selectorCourseList,
     selectorCourse,
     selectorCourseDataByList,
+    selectorStageListByCourse,
 };

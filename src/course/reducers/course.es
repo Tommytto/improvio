@@ -116,6 +116,24 @@ const course = (state = initialState, {type, payload}) => {
                 ...state,
                 isLoading: false,
             };
+        case ActionTypes.SET_COURSE_STAGE:
+            let stages = [payload.stage];
+            if (state.data[payload.courseId].stages) {
+                stages = [
+                    ...state.data[payload.courseId].stages,
+                    payload.stage,
+                ]
+            }
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    [payload.courseId]: {
+                        ...state.data[payload.courseId],
+                        stages,
+                    },
+                },
+            };
         default:
             return state;
     }
