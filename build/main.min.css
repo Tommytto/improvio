@@ -9033,6 +9033,7 @@ a.text-dark:hover, a.text-dark:focus {
   height: 290px;
   margin-right: 10px;
   margin-bottom: 15px;
+  float: left;
   width: 200px;
 }
 .course-preview:last-child {
@@ -9073,17 +9074,7 @@ a.text-dark:hover, a.text-dark:focus {
   width: 100%;
 }
 .course-preview-list {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  margin: auto;
 }
 .course-preview-list__title {
   width: 100%;
