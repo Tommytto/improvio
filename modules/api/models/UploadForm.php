@@ -26,7 +26,7 @@ class UploadForm extends Model
 
     public function upload()
     {
-        $bytes = openssl_random_pseudo_bytes(4);
+        $bytes = openssl_random_pseudo_bytes(6);
         $hash = bin2hex($bytes);
         $this->filePath = 'uploads/' . $hash . '.' . $this->fileImage->extension;
         if ($this->validate()) {

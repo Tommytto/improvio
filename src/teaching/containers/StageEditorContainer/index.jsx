@@ -84,7 +84,7 @@ class StageEditor extends React.Component {
 
     renderStages() {
         const {stageData} = this.props;
-        console.log(stageData);
+
         if (!stageData) {
             return null;
         }
