@@ -9082,6 +9082,18 @@ a.text-dark:hover, a.text-dark:focus {
 .course-edit {
   height: 100%;
 }
+.stage {
+  cursor: pointer;
+}
+.stage__toggle {
+  padding-right: 20px;
+}
+.stage__edit {
+  width: 20px;
+}
+.stage__lesson-list {
+  margin-left: 30px;
+}
 .info-editor__poster-preview {
   height: 125px;
 }
