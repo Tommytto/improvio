@@ -1,0 +1,67 @@
+{
+  "name": "react-starter-kit",
+  "version": "1.0.0",
+  "description": "Настройка окружения для React",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development -d --config webpack.config.es",
+    "dev": "cross-env NODE_ENV=development webpack -d --watch --config webpack.config.es",
+    "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.es"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "react",
+    "starterkit"
+  ],
+  "author": "TogyzbaevTN",
+  "license": "ISC",
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "bem-cn": "^2.1.3",
+    "bootstrap": "^4.0.0-beta.3",
+    "normalizr": "^3.2.4",
+    "open-iconic": "git+https://git@github.com/iconic/open-iconic.git",
+    "react": "^16.2.0",
+    "react-baron": "^0.8.0",
+    "react-dom": "^16.2.0",
+    "react-modal": "^3.1.6",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-social-login": "^3.4.1",
+    "reactstrap": "^5.0.0-alpha.4",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.6",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
+    "cross-env": "^5.1.1",
+    "css-loader": "^0.28.5",
+    "express": "^4.16.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.30.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "postcss": "^6.0.14",
+    "postcss-gradient-transparency-fix": "^2.1.0",
+    "postcss-loader": "^2.0.9",
+    "progress-bar-webpack-plugin": "^1.10.0",
+    "prop-types": "^15.5.10",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.9.1",
+    "webpack-dev-server": "^2.9.5"
+  }
+}

@@ -1,0 +1,22 @@
+@import (reference) '../../../common/style/variables';
+
+.main-page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    &__poster {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 500px;
+    }
+
+    &__poster-text {
+        margin: -500px auto 30px auto;
+        padding: 48px;
+        height: 500px;
+        color: @black;
+        max-width: 1200px;
+    }
+}
